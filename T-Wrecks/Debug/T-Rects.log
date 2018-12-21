@@ -1,0 +1,27 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Shadow Tunnel.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Animation.cpp
+  Button.cpp
+  GameObject.cpp
+c:\users\wulia\documents\repos\t-reckless\t-rects\gameobject.cpp(12): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+c:\users\wulia\documents\repos\t-reckless\t-rects\gameobject.cpp(13): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+  GameScene.cpp
+  GameSceneManager.cpp
+  Globals.cpp
+  InputHandler.cpp
+  IntroScene.cpp
+  KeyboardHandler.cpp
+  LeaderboardScene.cpp
+  LevelSelection.cpp
+  LevelTemplate.cpp
+c:\users\wulia\documents\repos\t-reckless\t-rects\leveltemplate.cpp(23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Player.cpp
+c:\users\wulia\documents\repos\t-reckless\t-rects\player.cpp(24): warning C4305: 'argument': truncation from 'double' to 'float'
+  PlayerSelectionScene.cpp
+c:\users\wulia\documents\repos\t-reckless\t-rects\playerselectionscene.cpp(84): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Source.cpp
+  MenuScene.cpp
+  MouseHandler.cpp
+  Vector.cpp
+  Generating Code...
+c:\users\wulia\documents\repos\t-reckless\t-rects\source.cpp(77): warning C4715: 'initialize': not all control paths return a value
+  T-Rects.vcxproj -> C:\Users\wulia\Documents\Repos\T-Reckless\Debug\T-Rects.exe
