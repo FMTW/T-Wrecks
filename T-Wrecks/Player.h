@@ -15,15 +15,14 @@ public:
 	virtual void draw(bool);
 	
 private:
-	SDL_Surface *animatedSurface;
-	SDL_Texture *playerTexture;
+	SDL_Texture *idleTexture, *runTexture;
 	Animation *idle = NULL;
 	Animation *run = NULL;
 	bool isFlipped = true;
 	bool isActive = false;
 	bool isGround = true;
 
-	int gravity = 2000;
+	int gravity = 5000;
 	int frameWidth = 128;
 	int frameHeight = 143;
 

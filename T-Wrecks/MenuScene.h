@@ -1,10 +1,13 @@
 #pragma once
 #include <list>
+#include <time.h>
+#include <stdlib.h>
 
 #include "Globals.h"
 #include "GameScene.h"
 #include "GameObject.h"
 #include "Button.h"
+#include "Cactus.h"
 
 #include "LevelSelection.h"
 #include "LeaderboardScene.h"
@@ -31,8 +34,8 @@ private:
 	TTF_Font *font;
 	SDL_Color fontColor;
 
-	SDL_Texture *backgroundTexture, *titleTexture, *playButtonTexture, *leaderboardButtonTexture, *settingButtonTexture, *exitButtonTexture;
-	SDL_Rect backgroundRect, titleRect, playButtonRect, leaderboardButtonRect, settingButtonRect, exitButtonRect;
+	SDL_Texture *titleTexture, *playButtonTexture, *leaderboardButtonTexture, *settingButtonTexture, *exitButtonTexture, *groundTexture;
+	SDL_Rect backgroundRect, titleRect, playButtonRect, leaderboardButtonRect, settingButtonRect, exitButtonRect, groundRect;
 
 	// List of stuffs to render;
 	list<GameObject*> renderObjects;
@@ -42,6 +45,8 @@ private:
 	KeyboardHandler *keyboardHandler;
 	Vector mousePos;
 
+	int randNum;
+	Cactus *c1, *c2, *c3;
 
 	Uint32 lastUpdate;
 	float dt;

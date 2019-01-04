@@ -1,25 +1,21 @@
 #include "Player.h"
 
 Player::Player(int x, int y) {
-	animatedSurface = IMG_Load("Assets/T-Rex_Idle.png");
-	
-	playerTexture = SDL_CreateTextureFromSurface(Globals::renderer, animatedSurface);
-	SDL_FreeSurface(animatedSurface);
+	idleTexture = IMG_LoadTexture(Globals::renderer, "Assets/T-Rex_Idle_V1.png");
+	SDL_QueryTexture(idleTexture, NULL, NULL, &frameWidth, &frameHeight);
+	idle = new Animation(idleTexture, Globals::renderer, 2, frameWidth/2, frameHeight, 0.7);
 
-	idle = new Animation(playerTexture, Globals::renderer, 2, frameWidth, frameHeight, 0.7);
-
-	animatedSurface = IMG_Load("Assets/T-Rex_Running.png");
-
-	playerTexture = SDL_CreateTextureFromSurface(Globals::renderer, animatedSurface);
-	SDL_FreeSurface(animatedSurface);
-
-	run = new Animation(playerTexture, Globals::renderer, 2, frameWidth, frameHeight, 0.1);
+	runTexture = IMG_LoadTexture(Globals::renderer, "Assets/T-Rex_Running_V1.png");
+	SDL_QueryTexture(runTexture, NULL, NULL, &frameWidth, &frameHeight);
+	run = new Animation(runTexture, Globals::renderer, 2, frameWidth/2, frameHeight, 0.1);
 
 	this->pos.x = x;
-	this->pos.y = y;
+	this->pos.y = y - frameHeight;
 }
 
 Player::~Player() {
+	SDL_DestroyTexture(idleTexture);
+	SDL_DestroyTexture(runTexture);
 	delete idle;
 	delete run;
 }
@@ -43,14 +39,14 @@ void Player::update(float dt) {
 	isFlip();
 
 	initialGravity(dt);
-	if (pos.y < 560) {
+	if (pos.y < 600) {
 		vel.y += gravity * dt;
 		isGround = false;
 	}
-	else if (pos.y >= 560 && !isGround) {
+	else if (pos.y >= 600 && !isGround) {
 		isGround = true;
 		vel.y = 0;
-		pos.y = 560;
+		pos.y = 600;
 	}
 
 	checkPlayerBoundry();

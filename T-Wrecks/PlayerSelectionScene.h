@@ -26,13 +26,13 @@ public:
 	}
 
 private:
-	Button *backButton, *c1Button, *c2Button, *c3Button;
+	Button *startButton, *backButton;
 
 	TTF_Font *font;
 	SDL_Color fontColor;
 
-	SDL_Texture *titleTexture, *backButtonTexture;
-	SDL_Rect titleRect, backButtonRect, *c1ButtonRect, *c2ButtonRect, *c3ButtonRect;
+	SDL_Texture *titleTexture, *startButtonTexture, *backButtonTexture;
+	SDL_Rect backgroundRect, titleRect, startButtonRect, backButtonRect;
 
 	Player *character0, *character1, *character2;
 

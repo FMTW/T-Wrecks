@@ -1,44 +1,33 @@
 #include "PlayerSelectionScene.h"
 
 PlayerSelectionScene::PlayerSelectionScene() {
+	backgroundRect = { 0, 0, 1280, 720 };
 
+	// Button Related Stuffs -----------------------------------------------------------------------------------
 	// Button default is (370 * 50), But it also takes two params Button(w, h);
-	// Button to select character to play
-	c1Button = new Button(300, 300);
-	c1Button->setRenderer(Globals::renderer);
-	c1Button->pos.x = 500;
-	c1Button->pos.y = 200;
+	
+	startButton = new Button();
+	startButton->setRenderer(Globals::renderer);
+	startButton->pos.x = 40;
+	startButton->pos.y = 535;
 
-	renderObjects.push_back(c1Button);
-
-	c2Button = new Button(300, 300);
-	c2Button->setRenderer(Globals::renderer);
-	c2Button->pos.x = 850;
-	c2Button->pos.y = 200;
-
-	renderObjects.push_back(c2Button);
-
-	c3Button = new Button(300, 300);
-	c3Button->setRenderer(Globals::renderer);
-	c3Button->pos.x = 1200;
-	c3Button->pos.y = 200;
-
-	renderObjects.push_back(c3Button);
+	renderObjects.push_back(startButton);
 
 	backButton = new Button();
 	backButton->setRenderer(Globals::renderer);
 	backButton->pos.x = 40;
-	backButton->pos.y = 790;
+	backButton->pos.y = 610;
 
 	renderObjects.push_back(backButton);
 
-	// Setup the font and font color
-	font = TTF_OpenFont("Assets/Roboto/Roboto-Regular.ttf", 32);
-	fontColor = { 220, 220, 220, 0 }; // RGBA
+	// Font Related Stuffs -----------------------------------------------------------------------------------
+
+	font = TTF_OpenFont("Assets/MONO.ttf", 32);
+	fontColor = { 83, 83, 83, 100 };
 
 	// Add title --------------------------------------------------------------------------------------------------------------------------------------------------------
-	TTF_Font *titleFont = TTF_OpenFont("Assets/Roboto/Roboto-Regular.ttf", 80);
-	SDL_Surface *titleTextSurface = TTF_RenderText_Blended(titleFont, "> Select Character", fontColor);
+	TTF_Font *titleFont = TTF_OpenFont("Assets/MONO.ttf", 75);
+	SDL_Surface *titleTextSurface = TTF_RenderText_Blended(titleFont, "SELECT DINO", fontColor);
 	titleTexture = SDL_CreateTextureFromSurface(Globals::renderer, titleTextSurface);
 	SDL_FreeSurface(titleTextSurface);
 
@@ -46,14 +35,22 @@ PlayerSelectionScene::PlayerSelectionScene() {
 	titleRect.y = 40;
 	SDL_QueryTexture(titleTexture, NULL, NULL, &titleRect.w, &titleRect.h);
 
+	// Add start button font --------------------------------------------------------------------------------------------------------------------------------------------------------
+	SDL_Surface *startTextSurface = TTF_RenderText_Blended(font, "START", fontColor);
+	startButtonTexture = SDL_CreateTextureFromSurface(Globals::renderer, startTextSurface);
+	SDL_FreeSurface(startTextSurface);
+
+	startButtonRect.x = 70;
+	startButtonRect.y = 545;
+	SDL_QueryTexture(startButtonTexture, NULL, NULL, &startButtonRect.w, &startButtonRect.h);
 
 	// Add back button font --------------------------------------------------------------------------------------------------------------------------------------------------------
-	SDL_Surface *exitTextSurface = TTF_RenderText_Blended(font, "Back", fontColor);
+	SDL_Surface *exitTextSurface = TTF_RenderText_Blended(font, "BACK TO MENU", fontColor);
 	backButtonTexture = SDL_CreateTextureFromSurface(Globals::renderer, exitTextSurface);
 	SDL_FreeSurface(exitTextSurface);
 
 	backButtonRect.x = 70;
-	backButtonRect.y = 800;
+	backButtonRect.y = 620;
 	SDL_QueryTexture(backButtonTexture, NULL, NULL, &backButtonRect.w, &backButtonRect.h);
 
 	// Render character for player to choose Player(AnimationNumber, position.x, position.y)
@@ -75,16 +72,15 @@ PlayerSelectionScene::PlayerSelectionScene() {
 
 PlayerSelectionScene::~PlayerSelectionScene() {
 	SDL_DestroyTexture(titleTexture);
+	SDL_DestroyTexture(startButtonTexture);
 	SDL_DestroyTexture(backButtonTexture);
 }
 
 void PlayerSelectionScene::update() {
-	//update time management stuff
 	Uint32 timeDiff = SDL_GetTicks() - lastUpdate;
 	dt = timeDiff / 1000.0;
 	lastUpdate = SDL_GetTicks();
 
-	// Check for input
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		// Check if the window is closed
@@ -110,6 +106,10 @@ void PlayerSelectionScene::update() {
 }
 
 void PlayerSelectionScene::render() {
+	// Render Background
+	SDL_SetRenderDrawColor(Globals::renderer, 244, 244, 244, 100);
+	SDL_RenderFillRect(Globals::renderer, &backgroundRect);
+
 	// Draw each menu objects
 	for (GameObject *ro : renderObjects) {
 		ro->draw(ro->checkIfHover(mousePos));
@@ -122,6 +122,7 @@ void PlayerSelectionScene::render() {
 	// Render textTexture
 	//SDL_RenderCopy(renderer, titleTexture, NULL, &titleRect);
 	SDL_RenderCopy(Globals::renderer, titleTexture, NULL, &titleRect);
+	SDL_RenderCopy(Globals::renderer, startButtonTexture, NULL, &startButtonRect);
 	SDL_RenderCopy(Globals::renderer, backButtonTexture, NULL, &backButtonRect);
 
 	// Present all our renderings to the window when you have enough drawing stuffs

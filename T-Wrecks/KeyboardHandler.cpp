@@ -18,11 +18,11 @@ void KeyboardHandler::update(SDL_Event *e) {
 	//	}
 	//}
 
-	if (keystates[SDL_SCANCODE_SPACE]) {
+	if ((keystates[SDL_SCANCODE_UP] && e->key.repeat == 0) || (keystates[SDL_SCANCODE_W] && e->key.repeat == 0)) {
 		p->vel.y = -1000;
 	}
-	if (keystates[SDL_SCANCODE_LEFT])
+	if ((keystates[SDL_SCANCODE_LEFT]) || (keystates[SDL_SCANCODE_A]))
 		p->vel.x = -playerVel;
-	if (keystates[SDL_SCANCODE_RIGHT])
+	if ((keystates[SDL_SCANCODE_RIGHT]) || (keystates[SDL_SCANCODE_D]))
 		p->vel.x = playerVel;
 }

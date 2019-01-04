@@ -3,6 +3,7 @@
 MenuScene::MenuScene() {
 	backgroundRect = {0, 0, 1280, 720};
 
+	// Button Related Stuffs -----------------------------------------------------------------------------------
 	// Button default is (370 * 50), But it also takes two params Button(w, h);
 	playButton = new Button();
 	playButton->setRenderer(Globals::renderer);
@@ -32,9 +33,10 @@ MenuScene::MenuScene() {
 
 	renderObjects.push_back(exitButton);
 
-	// Setup the font and font color
+	// Font Related Stuffs -----------------------------------------------------------------------------------
+
 	font = TTF_OpenFont("Assets/MONO.ttf", 32);
-	fontColor = { 83, 83, 83, 100 }; // RGBA
+	fontColor = { 83, 83, 83, 100 };
 
 	// Add title --------------------------------------------------------------------------------------------------------------------------------------------------------
 	TTF_Font *titleFont = TTF_OpenFont("Assets/MONO.ttf", 75);
@@ -92,9 +94,28 @@ MenuScene::MenuScene() {
 	player = new Player(800, 560);
 	player->setRenderer(Globals::renderer);
 
+	// Keyboard Handler for player object
 	keyboardHandler = new KeyboardHandler();
 	keyboardHandler->p = player;
 
+	// Setup ground
+	groundTexture = IMG_LoadTexture(Globals::renderer, "Assets/ground.png");
+	groundRect.x = 0;
+	groundRect.y = 670;
+	groundRect.w = 2560;
+	groundRect.h = 32;
+
+	// Setup Cactus
+	srand(time(NULL));
+	randNum = rand() % 4 + 1;
+	cout << "  Random Number for this Cactus is " << randNum << endl;
+	c1 = new Cactus(randNum, 20 , 700);
+	randNum = rand() % 4 + 1;
+	cout << "  Random Number for this Cactus is " << randNum << endl;
+	c2 = new Cactus(randNum, 400, 720);
+	randNum = rand() % 4 + 1;
+	cout << "  Random Number for this Cactus is " << randNum << endl;
+	c3 = new Cactus(randNum, 700, 710);
 
 
 	lastUpdate = SDL_GetTicks(); // Milliseconds since the start of the game running
@@ -102,7 +123,6 @@ MenuScene::MenuScene() {
 }
 
 MenuScene::~MenuScene() {
-	SDL_DestroyTexture(backgroundTexture);
 	SDL_DestroyTexture(titleTexture);
 	SDL_DestroyTexture(playButtonTexture);
 	SDL_DestroyTexture(leaderboardButtonTexture);
@@ -118,7 +138,6 @@ void MenuScene::update() {
 
 	// ---------------------------------------------------------------------------------------
 
-	// Check for input
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		// Check if the window is closed
@@ -143,7 +162,7 @@ void MenuScene::update() {
 				&&
 				event.button.y >= playButton->pos.y && event.button.y <= playButton->pos.y + 60) {
 				// Switch to "Level Selection" Scene
-				Globals::gsm.pushScene(new LevelSelection());
+				Globals::gsm.pushScene(new PlayerSelectionScene());
 			}
 		}
 		
@@ -192,12 +211,18 @@ void MenuScene::render() {
 
 	player->draw(false);
 
+	c1->draw();
+	c2->draw();
+	c3->draw();
+
 	// Render textTexture
 	SDL_RenderCopy(Globals::renderer, titleTexture, NULL, &titleRect);
 	SDL_RenderCopy(Globals::renderer, playButtonTexture, NULL, &playButtonRect);
 	SDL_RenderCopy(Globals::renderer, leaderboardButtonTexture, NULL, &leaderboardButtonRect);
 	SDL_RenderCopy(Globals::renderer, settingButtonTexture, NULL, &settingButtonRect);
 	SDL_RenderCopy(Globals::renderer, exitButtonTexture, NULL, &exitButtonRect);
+	SDL_RenderCopy(Globals::renderer, groundTexture, NULL, &groundRect);
+
 
 	// Present all our renderings to the window when you have enough drawing stuffs
 	SDL_RenderPresent(Globals::renderer);
