@@ -1,6 +1,5 @@
 #pragma once
 #include <list>
-
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -9,9 +8,8 @@
 #include "GameScene.h"
 #include "GameObject.h"
 #include "Button.h"
-
 #include "Player.h"
-
+#include "Ground.h"
 #include "KeyboardHandler.h"
 
 class LevelTemplate : public GameScene {
@@ -29,6 +27,10 @@ public:
 private:
 	Player *player;
 	KeyboardHandler *kbHandler;
+
+	SDL_Rect backgroundRect;
+
+	Ground *ground;
 
 	// List of stuffs to render;
 	list<GameObject*> lvlObjects;

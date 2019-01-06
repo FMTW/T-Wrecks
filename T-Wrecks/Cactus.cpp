@@ -28,10 +28,10 @@ Cactus::~Cactus() {
 	SDL_DestroyTexture(CactusTexture);
 }
 
-void Cactus::update(float dt) {
+void Cactus::update(float) {
 
 }
 
-void Cactus::draw() {
+void Cactus::draw(bool) {
 	SDL_RenderCopy(Globals::renderer, CactusTexture, NULL, &CactusRect);
 }

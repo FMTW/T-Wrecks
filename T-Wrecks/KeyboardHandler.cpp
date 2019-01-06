@@ -1,28 +1,31 @@
 #include "KeyboardHandler.h"
 
-KeyboardHandler::KeyboardHandler() { }
+KeyboardHandler::KeyboardHandler(bool state) { inGame = state; }
 KeyboardHandler::~KeyboardHandler() { }
 
 void KeyboardHandler::update(SDL_Event *e) {
-	const Uint8* keystates = SDL_GetKeyboardState(NULL);
-
+	// Set player velocity to 0 when key is released
 	p->vel.x = 0;
 
-	int playerVel = 700;
+	if (inGame)
+		runGameControl(e);
+	else
+		runMenuControl(e);
+	
+}
 
-	////key is considered down if = 1, no held down = 0
-	//if (e->type == SDL_KEYDOWN) {
-	//	if (e->key.keysym.scancode == SDL_SCANCODE_SPACE && e->key.repeat == 0) {
-	//		cout << "  Jump!!\n";
-	//		p->vel.y = -1000;
-	//	}
-	//}
+// Run this set of control when in menu
+void KeyboardHandler::runMenuControl(SDL_Event *e) {
+	if ((keyState[SDL_SCANCODE_UP] && e->key.repeat == 0) || (keyState[SDL_SCANCODE_W] && e->key.repeat == 0))
+		p->vel.y = -playerJumpVel;
+	if ((keyState[SDL_SCANCODE_LEFT]) || (keyState[SDL_SCANCODE_A])) 
+		p->vel.x = -playerRunVel;
+	if ((keyState[SDL_SCANCODE_RIGHT]) || (keyState[SDL_SCANCODE_D]))
+		p->vel.x = playerRunVel;
+}
 
-	if ((keystates[SDL_SCANCODE_UP] && e->key.repeat == 0) || (keystates[SDL_SCANCODE_W] && e->key.repeat == 0)) {
-		p->vel.y = -1000;
-	}
-	if ((keystates[SDL_SCANCODE_LEFT]) || (keystates[SDL_SCANCODE_A]))
-		p->vel.x = -playerVel;
-	if ((keystates[SDL_SCANCODE_RIGHT]) || (keystates[SDL_SCANCODE_D]))
-		p->vel.x = playerVel;
+// Run this set of control when in game
+void KeyboardHandler::runGameControl(SDL_Event *e) {
+	if ((keyState[SDL_SCANCODE_UP] && e->key.repeat == 0) || (keyState[SDL_SCANCODE_W] && e->key.repeat == 0))
+		p->vel.y = -playerJumpVel;
 }

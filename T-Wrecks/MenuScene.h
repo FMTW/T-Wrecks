@@ -7,6 +7,7 @@
 #include "GameScene.h"
 #include "GameObject.h"
 #include "Button.h"
+#include "Ground.h"
 #include "Cactus.h"
 
 #include "LevelSelection.h"
@@ -45,6 +46,7 @@ private:
 	KeyboardHandler *keyboardHandler;
 	Vector mousePos;
 
+	Ground *ground;
 	int randNum;
 	Cactus *c1, *c2, *c3;
 

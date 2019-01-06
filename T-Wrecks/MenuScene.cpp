@@ -91,35 +91,26 @@ MenuScene::MenuScene() {
 	mouseHandler = new MouseHandler();
 
 	// Prepare Player
-	player = new Player(800, 560);
+	player = new Player(800, 560, false);
 	player->setRenderer(Globals::renderer);
 
 	// Keyboard Handler for player object
-	keyboardHandler = new KeyboardHandler();
+	keyboardHandler = new KeyboardHandler(false);
 	keyboardHandler->p = player;
 
 	// Setup ground
-	groundTexture = IMG_LoadTexture(Globals::renderer, "Assets/ground.png");
-	groundRect.x = 0;
-	groundRect.y = 670;
-	groundRect.w = 2560;
-	groundRect.h = 32;
+	ground = new Ground(false);
 
 	// Setup Cactus
 	srand(time(NULL));
 	randNum = rand() % 4 + 1;
-	cout << "  Random Number for this Cactus is " << randNum << endl;
-	c1 = new Cactus(randNum, 20 , 700);
+	c1 = new Cactus(randNum, 400 , 700);
 	randNum = rand() % 4 + 1;
-	cout << "  Random Number for this Cactus is " << randNum << endl;
-	c2 = new Cactus(randNum, 400, 720);
+	c2 = new Cactus(randNum, 700, 720);
 	randNum = rand() % 4 + 1;
-	cout << "  Random Number for this Cactus is " << randNum << endl;
-	c3 = new Cactus(randNum, 700, 710);
-
+	c3 = new Cactus(randNum, 1000, 710);
 
 	lastUpdate = SDL_GetTicks(); // Milliseconds since the start of the game running
-
 }
 
 MenuScene::~MenuScene() {
@@ -186,9 +177,7 @@ void MenuScene::update() {
 				return;
 			}
 		}
-
 		keyboardHandler->update(&event);
-
 	}
 
 	player->update(dt);
@@ -211,9 +200,11 @@ void MenuScene::render() {
 
 	player->draw(false);
 
-	c1->draw();
-	c2->draw();
-	c3->draw();
+	ground->draw(false);
+
+	c1->draw(false);
+	c2->draw(false);
+	c3->draw(false);
 
 	// Render textTexture
 	SDL_RenderCopy(Globals::renderer, titleTexture, NULL, &titleRect);
@@ -221,7 +212,6 @@ void MenuScene::render() {
 	SDL_RenderCopy(Globals::renderer, leaderboardButtonTexture, NULL, &leaderboardButtonRect);
 	SDL_RenderCopy(Globals::renderer, settingButtonTexture, NULL, &settingButtonRect);
 	SDL_RenderCopy(Globals::renderer, exitButtonTexture, NULL, &exitButtonRect);
-	SDL_RenderCopy(Globals::renderer, groundTexture, NULL, &groundRect);
 
 
 	// Present all our renderings to the window when you have enough drawing stuffs

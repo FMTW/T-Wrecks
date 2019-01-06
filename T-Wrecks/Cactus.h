@@ -8,7 +8,7 @@ public:
 	~Cactus();
 
 	virtual void update(float);
-	virtual void draw();
+	virtual void draw(bool);
 
 private:
 	SDL_Texture *CactusTexture;

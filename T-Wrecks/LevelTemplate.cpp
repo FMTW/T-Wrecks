@@ -1,13 +1,20 @@
 #include "LevelTemplate.h"
 
-LevelTemplate::LevelTemplate() { 
-	// Setting up player in the level
-	player = new Player(20, 20);
+LevelTemplate::LevelTemplate() {
+	backgroundRect = { 0, 0, 1280, 720 };
+
+	// Setup Player
+	player = new Player(20, 560, true);
 	player->setRenderer(Globals::renderer);
 	lvlObjects.push_back(player);
 
+	// Setup Ground
+	ground = new Ground(true);
+	ground->setRenderer(Globals::renderer);
+	lvlObjects.push_back(ground);
+
 	// Setup Keyboard Controller
-	kbHandler = new KeyboardHandler();
+	kbHandler = new KeyboardHandler(true);
 	kbHandler->p = player;
 
 	// Prep time stuff
@@ -39,16 +46,11 @@ void LevelTemplate::update() {
 	}
 
 	kbHandler->update(&event);
-
-	// Monitor Mouse Coordinate
-	//mousePos = mouseHandler->getMouseState();
 }
 
 void LevelTemplate::render() {
-	// Render Background
-	SDL_SetRenderDrawBlendMode(Globals::renderer, SDL_BLENDMODE_BLEND);
-	SDL_SetRenderDrawColor(Globals::renderer, 10, 10, 10, 200);
-	SDL_RenderClear(Globals::renderer);
+	SDL_SetRenderDrawColor(Globals::renderer, 244, 244, 244, 100);
+	SDL_RenderFillRect(Globals::renderer, &backgroundRect);
 
 	// Render all the Game Objects in the level
 	for (GameObject *lo : lvlObjects) {

@@ -41,8 +41,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\wulia\Documents\Repos\Shadow-Tunnel\SDL2_2015\include;C:\Users\User\Documents\GitHub\T-Wrecks\SDL2_2015\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\wulia\Documents\Repos\Shadow-Tunnel\SDL2_2015\lib\x86;C:\Users\User\Documents\GitHub\T-Wrecks\SDL2_2015\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\wulia\Documents\Repos\T-Wrecks\SDL2_2015\include;C:\Users\wulia\Documents\Repos\Shadow-Tunnel\SDL2_2015\include;C:\Users\User\Documents\GitHub\T-Wrecks\SDL2_2015\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\wulia\Documents\Repos\T-Wrecks\SDL2_2015\lib\x86;C:\Users\wulia\Documents\Repos\Shadow-Tunnel\SDL2_2015\lib\x86;C:\Users\User\Documents\GitHub\T-Wrecks\SDL2_2015\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>E:\OneDrive\AIT\2018 Winter Semester\Basic Game Engine\Assignment 1\Shadow Tunnel\SDL2_2015\include;$(IncludePath)</IncludePath>
@@ -85,6 +85,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameSceneManager.cpp" />
     <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="IntroScene.cpp" />
     <ClCompile Include="KeyboardHandler.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSceneManager.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="IntroScene.h" />
     <ClInclude Include="KeyboardHandler.h" />

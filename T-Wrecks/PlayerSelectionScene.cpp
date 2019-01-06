@@ -54,9 +54,9 @@ PlayerSelectionScene::PlayerSelectionScene() {
 	SDL_QueryTexture(backButtonTexture, NULL, NULL, &backButtonRect.w, &backButtonRect.h);
 
 	// Render character for player to choose Player(AnimationNumber, position.x, position.y)
-	character0 = new Player(500, 200);
-	character1 = new Player(850, 200);
-	character2 = new Player(1200, 200);
+	character0 = new Player(500, 200, false);
+	character1 = new Player(850, 200, false);
+	character2 = new Player(1200, 200, false);
 
 	playerObjects.push_back(character0);
 	playerObjects.push_back(character1);
@@ -92,6 +92,16 @@ void PlayerSelectionScene::update() {
 
 		// Go back to last scene when clicked "Back" button
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
+			if (event.button.x >= startButton->pos.x && event.button.x <= startButton->pos.x + 400
+				&&
+				event.button.y >= startButton->pos.y && event.button.y <= startButton->pos.y + 70) {
+				Globals::gsm.pushScene(new LevelTemplate());
+				return;
+			}
+		}
+
+		// Go back to last scene when clicked "Back" button
+		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
 			if (event.button.x >= backButton->pos.x && event.button.x <= backButton->pos.x + 400
 				&&
 				event.button.y >= backButton->pos.y && event.button.y <= backButton->pos.y + 70) {
@@ -120,7 +130,6 @@ void PlayerSelectionScene::render() {
 	}
 
 	// Render textTexture
-	//SDL_RenderCopy(renderer, titleTexture, NULL, &titleRect);
 	SDL_RenderCopy(Globals::renderer, titleTexture, NULL, &titleRect);
 	SDL_RenderCopy(Globals::renderer, startButtonTexture, NULL, &startButtonRect);
 	SDL_RenderCopy(Globals::renderer, backButtonTexture, NULL, &backButtonRect);

@@ -8,7 +8,7 @@
 
 class Player : public GameObject {
 public:
-	Player(int, int);
+	Player(int, int, bool);
 	~Player();
 	
 	virtual void update(float);
@@ -18,8 +18,8 @@ private:
 	SDL_Texture *idleTexture, *runTexture;
 	Animation *idle = NULL;
 	Animation *run = NULL;
-	bool isFlipped = true;
-	bool isActive = false;
+	bool faceLeft = false;
+	bool inGame = false;
 	bool isGround = true;
 
 	int gravity = 5000;
