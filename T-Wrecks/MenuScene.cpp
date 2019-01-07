@@ -91,7 +91,7 @@ MenuScene::MenuScene() {
 	mouseHandler = new MouseHandler();
 
 	// Prepare Player
-	player = new Player(800, 560, false);
+	player = new Player(350, 560, false);
 	player->setRenderer(Globals::renderer);
 
 	// Keyboard Handler for player object
@@ -104,11 +104,17 @@ MenuScene::MenuScene() {
 	// Setup Cactus
 	srand(time(NULL));
 	randNum = rand() % 4 + 1;
-	c1 = new Cactus(randNum, 400 , 700);
+	randX = rand() % 780 + 500;
+	randY = rand() % 20 + 700;
+	c1 = new Cactus(randNum, randX, randY, false);
 	randNum = rand() % 4 + 1;
-	c2 = new Cactus(randNum, 700, 720);
+	randX = rand() % 780 + 500;
+	randY = rand() % 20 + 700;
+	c2 = new Cactus(randNum, randX, randY, false);
 	randNum = rand() % 4 + 1;
-	c3 = new Cactus(randNum, 1000, 710);
+	randX = rand() % 780 + 500;
+	randY = rand() % 20 + 700;
+	c3 = new Cactus(randNum, randX, randY, false);
 
 	lastUpdate = SDL_GetTicks(); // Milliseconds since the start of the game running
 }
@@ -182,6 +188,10 @@ void MenuScene::update() {
 
 	player->update(dt);
 
+	ground->update(dt);
+	c1->update(dt);
+	c2->update(dt);
+	c3->update(dt);
 	// Monitor Mouse Coordinate
 	mousePos = mouseHandler->getMouseState();
 	//cout << "  Mouse Coordinate (" << mousePos.x << ", " << mousePos.y << ")\n";

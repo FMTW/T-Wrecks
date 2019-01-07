@@ -13,6 +13,7 @@ public:
 	virtual void draw(bool);
 
 	void checkBoundry();
+	void checkPosition();
 
 private:
 	SDL_Texture *groundTexture;
@@ -20,6 +21,5 @@ private:
 
 	int w, h;
 	bool inGame;
-	int groundVel = 5;
 };
 

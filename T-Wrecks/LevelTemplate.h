@@ -7,9 +7,9 @@
 #include "Globals.h"
 #include "GameScene.h"
 #include "GameObject.h"
-#include "Button.h"
 #include "Player.h"
 #include "Ground.h"
+#include "Cactus.h"
 #include "KeyboardHandler.h"
 
 class LevelTemplate : public GameScene {
@@ -31,6 +31,8 @@ private:
 	SDL_Rect backgroundRect;
 
 	Ground *ground;
+	Cactus *cactus;
+	int randNum, randX, randY;
 
 	// List of stuffs to render;
 	list<GameObject*> lvlObjects;
@@ -38,8 +40,4 @@ private:
 	// Time related stuffs
 	Uint32 lastUpdate;
 	float dt;
-
-	// Input Handler for MenuScene
-	MouseHandler *mouseHandler;
-	Vector mousePos;
 };

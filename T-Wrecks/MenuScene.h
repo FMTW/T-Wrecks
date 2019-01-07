@@ -1,7 +1,5 @@
 #pragma once
 #include <list>
-#include <time.h>
-#include <stdlib.h>
 
 #include "Globals.h"
 #include "GameScene.h"
@@ -47,7 +45,7 @@ private:
 	Vector mousePos;
 
 	Ground *ground;
-	int randNum;
+	int randNum, randX, randY;
 	Cactus *c1, *c2, *c3;
 
 	Uint32 lastUpdate;

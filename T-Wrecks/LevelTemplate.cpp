@@ -13,6 +13,14 @@ LevelTemplate::LevelTemplate() {
 	ground->setRenderer(Globals::renderer);
 	lvlObjects.push_back(ground);
 
+	// Setup Cactus
+	randNum = rand() % 4 + 1;
+	randX = rand() % 1280 + 1281;
+	randY = rand() % 20 + 700;
+	cactus = new Cactus(randNum, randX, randY, true);
+	cactus->setRenderer(Globals::renderer);
+	lvlObjects.push_back(cactus);
+
 	// Setup Keyboard Controller
 	kbHandler = new KeyboardHandler(true);
 	kbHandler->p = player;
@@ -44,7 +52,7 @@ void LevelTemplate::update() {
 	for (GameObject *lo : lvlObjects) {
 		lo->update(dt);
 	}
-
+	
 	kbHandler->update(&event);
 }
 
