@@ -50,5 +50,7 @@ private:
 
 	Uint32 lastUpdate;
 	float dt;
+	TimeHandler *t;
+	float testDT;
 
 };

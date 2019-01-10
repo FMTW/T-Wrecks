@@ -11,6 +11,7 @@
 #include "Ground.h"
 #include "Cactus.h"
 #include "KeyboardHandler.h"
+#include "TimeHandler.h"
 
 class LevelTemplate : public GameScene {
 public:
@@ -24,9 +25,12 @@ public:
 	virtual bool onExit();
 	virtual string getStateID() { return "LevelTemplate"; }
 
+	void checkCollision();
+
 private:
 	Player *player;
 	KeyboardHandler *kbHandler;
+	TimeHandler *t;
 
 	SDL_Rect backgroundRect;
 

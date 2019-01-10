@@ -1,17 +1,22 @@
 #include "Cactus.h"
 
 
-Cactus::Cactus(int num, int x, int y, bool state) {
-	srand(time(0));
+Cactus::Cactus(bool state) {
 	randNum = rand() % 4 + 1;
+
+	if (state)
+		randX = rand() % 1280 + 1281;
+
+	randX = rand() % 780 + 500;
+	randY = rand() % 20 + 700;
 	cout << "  This is cactus number " << randNum << endl;
 	loadCactusTexture(randNum);
 	SDL_QueryTexture(cactusTexture, NULL, NULL, &w, &h);
 	
 	vel.x = -500;
 
-	pos.x = x;
-	pos.y = y - h;
+	pos.x = randX;
+	pos.y = randY - h;
 	cactusRect.w = w;
 	cactusRect.h = h;
 
@@ -56,7 +61,7 @@ void Cactus::loadCactusTexture(int num) {
 }
 
 
-// Reset ground position to create a loop
+// Reset cactus position to create a loop
 void Cactus::checkBoundry() {
 	if (pos.x <= -w)
 		pos.x = rand() % 1280 + 1281;

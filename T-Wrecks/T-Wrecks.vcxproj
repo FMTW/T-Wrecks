@@ -97,6 +97,7 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="MouseHandler.cpp" />
+    <ClCompile Include="TimeHandler.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +119,7 @@
     <ClInclude Include="MouseHandler.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerSelectionScene.h" />
+    <ClInclude Include="TimeHandler.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

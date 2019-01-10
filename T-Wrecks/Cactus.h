@@ -7,7 +7,7 @@ class Cactus :
 	public GameObject
 {
 public:
-	Cactus(int, int, int, bool);
+	Cactus(bool);
 	~Cactus();
 
 	virtual void update(float);
@@ -21,5 +21,5 @@ private:
 	SDL_Rect cactusRect;
 
 	bool inGame;
-	int w, h, randNum;
+	int w, h, randNum, randX, randY;
 };

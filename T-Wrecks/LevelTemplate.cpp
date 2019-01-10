@@ -14,10 +14,7 @@ LevelTemplate::LevelTemplate() {
 	lvlObjects.push_back(ground);
 
 	// Setup Cactus
-	randNum = rand() % 4 + 1;
-	randX = rand() % 1280 + 1281;
-	randY = rand() % 20 + 700;
-	cactus = new Cactus(randNum, randX, randY, true);
+	cactus = new Cactus(true);
 	cactus->setRenderer(Globals::renderer);
 	lvlObjects.push_back(cactus);
 
@@ -27,6 +24,9 @@ LevelTemplate::LevelTemplate() {
 
 	// Prep time stuff
 	lastUpdate = SDL_GetTicks(); // Milliseconds since the start of the game running
+	cout << "  Old Start time is " << lastUpdate << endl;
+	// Testing Time Handler
+	t = new TimeHandler();
 }
 
 LevelTemplate::~LevelTemplate() { }
@@ -50,10 +50,15 @@ void LevelTemplate::update() {
 	
 	// Update level objects
 	for (GameObject *lo : lvlObjects) {
-		lo->update(dt);
+		lo->update(t->getDeltaTime());
 	}
 	
+	cout << "  Old Delta Time is " << dt << endl;
+	cout << "  New Delta Time is " << t->getDeltaTime() << endl;
+
 	kbHandler->update(&event);
+
+	checkCollision();
 }
 
 void LevelTemplate::render() {
@@ -77,4 +82,7 @@ bool LevelTemplate::onEnter() {
 bool LevelTemplate::onExit() {
 	cout << "Popped Level Template Scene" << endl;
 	return true;
+}
+
+void LevelTemplate::checkCollision() {
 }

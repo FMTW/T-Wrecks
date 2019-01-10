@@ -18,6 +18,9 @@ int sWidth = 1280;
 int sHeight = 720;
 
 int initialize() {
+	// Randomize seed
+	srand(time(0));
+
 	// Initialise SDL with all the subsystem coz im lazy
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		cout << "SDL failed to initialise" << endl;

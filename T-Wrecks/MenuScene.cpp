@@ -1,4 +1,5 @@
 #include "MenuScene.h"
+#include "TimeHandler.h"
 
 MenuScene::MenuScene() {
 	backgroundRect = {0, 0, 1280, 720};
@@ -102,21 +103,14 @@ MenuScene::MenuScene() {
 	ground = new Ground(false);
 
 	// Setup Cactus
-	srand(time(NULL));
-	randNum = rand() % 4 + 1;
-	randX = rand() % 780 + 500;
-	randY = rand() % 20 + 700;
-	c1 = new Cactus(randNum, randX, randY, false);
-	randNum = rand() % 4 + 1;
-	randX = rand() % 780 + 500;
-	randY = rand() % 20 + 700;
-	c2 = new Cactus(randNum, randX, randY, false);
-	randNum = rand() % 4 + 1;
-	randX = rand() % 780 + 500;
-	randY = rand() % 20 + 700;
-	c3 = new Cactus(randNum, randX, randY, false);
+	c1 = new Cactus(false);
+	c2 = new Cactus(false);
+	c3 = new Cactus(false);
 
 	lastUpdate = SDL_GetTicks(); // Milliseconds since the start of the game running
+	cout << "  Old Start time is " << lastUpdate << endl;
+	t = new TimeHandler();
+
 }
 
 MenuScene::~MenuScene() {
@@ -186,12 +180,19 @@ void MenuScene::update() {
 		keyboardHandler->update(&event);
 	}
 
-	player->update(dt);
+	testDT = t->getDeltaTime();
+	player->update(testDT);
 
 	ground->update(dt);
 	c1->update(dt);
 	c2->update(dt);
 	c3->update(dt);
+
+	cout << "  Old Delta Time is " << dt << endl;
+	cout << "  Test Delta Time is " << testDT << endl;
+	cout << "  New Delta Time is " << t->getDeltaTime() << endl;
+
+
 	// Monitor Mouse Coordinate
 	mousePos = mouseHandler->getMouseState();
 	//cout << "  Mouse Coordinate (" << mousePos.x << ", " << mousePos.y << ")\n";
