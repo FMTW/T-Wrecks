@@ -1,5 +1,4 @@
 #include "MenuScene.h"
-#include "TimeHandler.h"
 
 MenuScene::MenuScene() {
 	backgroundRect = {0, 0, 1280, 720};
@@ -37,7 +36,7 @@ MenuScene::MenuScene() {
 	// Font Related Stuffs -----------------------------------------------------------------------------------
 
 	font = TTF_OpenFont("Assets/MONO.ttf", 32);
-	fontColor = { 83, 83, 83, 100 };
+	fontColor = { 83, 83, 83 };
 
 	// Add title --------------------------------------------------------------------------------------------------------------------------------------------------------
 	TTF_Font *titleFont = TTF_OpenFont("Assets/MONO.ttf", 75);
@@ -88,47 +87,68 @@ MenuScene::MenuScene() {
 	exitButtonRect.y = 620;
 	SDL_QueryTexture(exitButtonTexture, NULL, NULL, &exitButtonRect.w, &exitButtonRect.h);
 
-	// Input Handlers
-	mouseHandler = new MouseHandler();
-
-	// Prepare Player
+	// Prepare player
 	player = new Player(350, 560, false);
 	player->setRenderer(Globals::renderer);
+	lvlObjects.push_back(player);
+
+	// Setup ground
+	ground = new Ground(false);
+	lvlObjects.push_back(ground);
+
+	// Setup cactus
+	c1 = new Cactus(false);
+	c2 = new Cactus(false);
+	c3 = new Cactus(false);
+	lvlObjects.push_back(c1);
+	lvlObjects.push_back(c2);
+	lvlObjects.push_back(c3);
+
+	// Setup clouds
+	cloud1 = new Cloud();
+	cloud2 = new Cloud();
+	cloud3 = new Cloud();
+	lvlObjects.push_back(cloud1);
+	lvlObjects.push_back(cloud2);
+	lvlObjects.push_back(cloud3);
+
+	// Setup Pterosaur
+	ptsaur1 = new Pterosaur();
+	ptsaur1->setRenderer(Globals::renderer);
+	ptsaur2 = new Pterosaur();
+	ptsaur2->setRenderer(Globals::renderer);
+	lvlObjects.push_back(ptsaur1);
+	lvlObjects.push_back(ptsaur2);
+	
+	// Input Handlers
+	mouseHandler = new MouseHandler();
 
 	// Keyboard Handler for player object
 	keyboardHandler = new KeyboardHandler(false);
 	keyboardHandler->p = player;
 
-	// Setup ground
-	ground = new Ground(false);
-
-	// Setup Cactus
-	c1 = new Cactus(false);
-	c2 = new Cactus(false);
-	c3 = new Cactus(false);
-
-	lastUpdate = SDL_GetTicks(); // Milliseconds since the start of the game running
-	cout << "  Old Start time is " << lastUpdate << endl;
+	// Prep Time
 	t = new TimeHandler();
 
 }
 
+// Mopping up the scene
 MenuScene::~MenuScene() {
 	SDL_DestroyTexture(titleTexture);
 	SDL_DestroyTexture(playButtonTexture);
 	SDL_DestroyTexture(leaderboardButtonTexture);
 	SDL_DestroyTexture(settingButtonTexture);
 	SDL_DestroyTexture(exitButtonTexture);
+
+	delete player, ground, c1, c2, c3;
+	player = NULL;
+	ground = NULL; 
+	c1 = NULL;
+	c2 = NULL;
+	c3 = NULL;
 }
 
-
 void MenuScene::update() {
-	Uint32 timeDiff = SDL_GetTicks() - lastUpdate;
-	dt = timeDiff / 1000.0;
-	lastUpdate = SDL_GetTicks();
-
-	// ---------------------------------------------------------------------------------------
-
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		// Check if the window is closed
@@ -180,23 +200,12 @@ void MenuScene::update() {
 		keyboardHandler->update(&event);
 	}
 
-	testDT = t->getDeltaTime();
-	player->update(testDT);
+	dt = t->getDeltaTime();
+	
+	for (GameObject *lo : lvlObjects)
+		lo->update(dt);
 
-	ground->update(dt);
-	c1->update(dt);
-	c2->update(dt);
-	c3->update(dt);
-
-	cout << "  Old Delta Time is " << dt << endl;
-	cout << "  Test Delta Time is " << testDT << endl;
-	cout << "  New Delta Time is " << t->getDeltaTime() << endl;
-
-
-	// Monitor Mouse Coordinate
 	mousePos = mouseHandler->getMouseState();
-	//cout << "  Mouse Coordinate (" << mousePos.x << ", " << mousePos.y << ")\n";
-
 }
 
 void MenuScene::render() {
@@ -204,18 +213,11 @@ void MenuScene::render() {
 	SDL_SetRenderDrawColor(Globals::renderer, 244, 244, 244, 100);
 	SDL_RenderFillRect(Globals::renderer, &backgroundRect);
 
-	// Draw each menu objects
-	for (GameObject *ro : renderObjects) {
+	for (GameObject *ro : renderObjects)
 		ro->draw(ro->checkIfHover(mousePos));
-	}
 
-	player->draw(false);
-
-	ground->draw(false);
-
-	c1->draw(false);
-	c2->draw(false);
-	c3->draw(false);
+	for (GameObject *lo : lvlObjects)
+		lo->draw(false);
 
 	// Render textTexture
 	SDL_RenderCopy(Globals::renderer, titleTexture, NULL, &titleRect);
@@ -233,7 +235,6 @@ bool MenuScene::onEnter() {
 	cout << "Pushed Menu Scene" << endl;
 	return true;
 }
-
 bool MenuScene::onExit() {
 	cout << "Popped Menu Scene" << endl;
 	return true;

@@ -6,20 +6,12 @@ Cactus::Cactus(bool state) {
 
 	if (state)
 		randX = rand() % 1280 + 1281;
-
-	randX = rand() % 780 + 500;
+	else
+		randX = rand() % 780 + 500;
 	randY = rand() % 20 + 700;
-	cout << "  This is cactus number " << randNum << endl;
 	loadCactusTexture(randNum);
-	SDL_QueryTexture(cactusTexture, NULL, NULL, &w, &h);
 	
 	vel.x = -500;
-
-	pos.x = randX;
-	pos.y = randY - h;
-	cactusRect.w = w;
-	cactusRect.h = h;
-
 	inGame = state;
 }
 
@@ -39,6 +31,8 @@ void Cactus::update(float dt) {
 }
 
 void Cactus::draw(bool) {
+	//SDL_SetRenderDrawColor(Globals::renderer, 100, 100, 100, 100);
+	//SDL_RenderFillRect(Globals::renderer, &cactusRect);
 	SDL_RenderCopy(Globals::renderer, cactusTexture, NULL, &cactusRect);
 }
 
@@ -58,13 +52,21 @@ void Cactus::loadCactusTexture(int num) {
 		cactusTexture = IMG_LoadTexture(Globals::renderer, "Assets/Cactus_Big_Row.png");
 		break;
 	}
+	SDL_QueryTexture(cactusTexture, NULL, NULL, &frameWidth, &frameHeight);
+	pos.x = randX;
+	pos.y = randY - frameHeight;
+	cactusRect.w = frameWidth;
+	cactusRect.h = frameHeight;
 }
 
 
 // Reset cactus position to create a loop
 void Cactus::checkBoundry() {
-	if (pos.x <= -w)
+	if (pos.x <= -frameWidth*2) {
 		pos.x = rand() % 1280 + 1281;
+		randNum = rand() % 4 + 1;
+		loadCactusTexture(randNum);
+	}
 }
 
 // Just for debugging

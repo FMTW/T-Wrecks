@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
-
 #include <SDL.h>
+
+#include "Globals.h"
 
 using namespace std;
 

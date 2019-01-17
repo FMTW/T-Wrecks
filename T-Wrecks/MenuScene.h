@@ -7,6 +7,8 @@
 #include "Button.h"
 #include "Ground.h"
 #include "Cactus.h"
+#include "Cloud.h"
+#include "Pterosaur.h"
 
 #include "LevelSelection.h"
 #include "LeaderboardScene.h"
@@ -38,19 +40,20 @@ private:
 
 	// List of stuffs to render;
 	list<GameObject*> renderObjects;
+	list<GameObject*> lvlObjects;
 
 	// Input Handler for MenuScene
 	MouseHandler *mouseHandler;
 	KeyboardHandler *keyboardHandler;
 	Vector mousePos;
 
+	// Setup level objects
 	Ground *ground;
 	int randNum, randX, randY;
 	Cactus *c1, *c2, *c3;
+	Cloud *cloud1, *cloud2, *cloud3;
+	Pterosaur *ptsaur1, *ptsaur2;
 
-	Uint32 lastUpdate;
-	float dt;
 	TimeHandler *t;
-	float testDT;
-
+	float dt;
 };

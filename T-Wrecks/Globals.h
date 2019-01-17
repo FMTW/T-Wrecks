@@ -5,6 +5,8 @@
 #include <SDL_ttf.h>
 
 #include "GameSceneManager.h"
+#include <time.h>
+#include <stdlib.h>
 
 class Globals
 {
@@ -12,13 +14,8 @@ public:
 	Globals();
 	~Globals();
 
-	// Setup Basic stuffs
 	static SDL_Renderer *renderer;
 	static bool quitGame;
 	static GameSceneManager gsm;
-
-	// Setup inputHandlers
-
-	// Setup Stuffs for the game
 };
 

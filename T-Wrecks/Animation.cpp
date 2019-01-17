@@ -38,9 +38,8 @@ void Animation::draw(int x, int y) {
 	srcRect.w = frameWidth;
 	srcRect.h = frameHeight;
 
-	//setup destination rect
 	SDL_Rect destRect = { x, y, frameWidth, frameHeight};
-	//draw
+	// troubleshoot collision box
 	SDL_RenderCopy(renderer, spriteSheet, &srcRect, &destRect);
 }
 

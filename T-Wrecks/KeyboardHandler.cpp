@@ -1,6 +1,10 @@
 #include "KeyboardHandler.h"
 
-KeyboardHandler::KeyboardHandler(bool state) { inGame = state; }
+KeyboardHandler::KeyboardHandler(bool state) { 
+	inGame = state; 
+	playerJumpVel = 1200;
+	playerRunVel = 700;
+}
 KeyboardHandler::~KeyboardHandler() { }
 
 void KeyboardHandler::update(SDL_Event *e) {

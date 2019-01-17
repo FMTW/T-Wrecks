@@ -75,7 +75,7 @@ void Player::draw(bool) {
 	}
 }
 
-void Player::setAnimation(int dt) {
+void Player::setupSprite(int dt) {
 }
 
 // Check if the player need to be flip

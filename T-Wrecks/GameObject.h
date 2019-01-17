@@ -11,9 +11,9 @@ protected:
 public:
 	Vector pos;  // Position
 	Vector vel;  // Velocity
+	int frameWidth, frameHeight;
 
 	void setRenderer(SDL_Renderer*);
-
 
 	virtual void update(float);
 	virtual void updateMovement(float);

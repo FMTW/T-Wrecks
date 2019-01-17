@@ -1,7 +1,5 @@
 #pragma once
 #include "GameObject.h"
-#include <time.h>
-#include <stdlib.h>
 
 class Cactus :
 	public GameObject
@@ -21,5 +19,5 @@ private:
 	SDL_Rect cactusRect;
 
 	bool inGame;
-	int w, h, randNum, randX, randY;
+	int randNum, randX, randY;
 };

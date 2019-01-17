@@ -23,10 +23,8 @@ private:
 	bool isGround = true;
 
 	int gravity = 5000;
-	int frameWidth = 128;
-	int frameHeight = 143;
 
-	void setAnimation(int);
+	void setupSprite(int);
 	void isFlip();
 	void initialGravity(int);
 	void checkPlayerBoundry();
