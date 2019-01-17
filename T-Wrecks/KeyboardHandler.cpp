@@ -30,6 +30,12 @@ void KeyboardHandler::runMenuControl(SDL_Event *e) {
 
 // Run this set of control when in game
 void KeyboardHandler::runGameControl(SDL_Event *e) {
-	if ((keyState[SDL_SCANCODE_UP] && e->key.repeat == 0) || (keyState[SDL_SCANCODE_W] && e->key.repeat == 0))
+	cout << "  Jump Counter: " << jumpCount << endl;
+	if (((keyState[SDL_SCANCODE_UP] && e->key.repeat == 0) || (keyState[SDL_SCANCODE_W] && e->key.repeat == 0))
+		&& jumpCount < 2) {
 		p->vel.y = -playerJumpVel;
+		jumpCount++;
+	}
+	else if (p->isGround)
+		jumpCount = 0;
 }

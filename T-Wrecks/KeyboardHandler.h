@@ -16,7 +16,7 @@ public:
 private:
 	// Switch Keyboard Mode between Menu and Ingame, 0 = Menu, 1 = InGame;
 	bool inGame;
-	int playerJumpVel, playerRunVel;
+	int playerJumpVel, playerRunVel, jumpCount;
 	const Uint8 *keyState = SDL_GetKeyboardState(NULL);
 };
 

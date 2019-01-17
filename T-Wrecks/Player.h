@@ -13,14 +13,15 @@ public:
 	
 	virtual void update(float);
 	virtual void draw(bool);
-	
+
+	bool isGround = true;
+
 private:
 	SDL_Texture *idleTexture, *runTexture;
 	Animation *idle = NULL;
 	Animation *run = NULL;
 	bool faceLeft = false;
 	bool inGame = false;
-	bool isGround = true;
 
 	int gravity = 5000;
 
