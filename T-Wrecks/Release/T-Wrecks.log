@@ -1,0 +1,5 @@
+﻿  Generating code
+c:\users\user\documents\github\t-wrecks\t-wrecks\source.cpp(80): warning C4715: 'initialize': not all control paths return a value
+  All 310 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  T-Wrecks.vcxproj -> C:\Users\User\Documents\GitHub\T-Wrecks\Release\T-Wrecks.exe

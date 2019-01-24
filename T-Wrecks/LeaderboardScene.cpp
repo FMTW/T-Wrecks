@@ -18,7 +18,7 @@ LeaderboardScene::LeaderboardScene() {
 
 	// Add title --------------------------------------------------------------------------------------------------------------------------------------------------------
 	TTF_Font *titleFont = TTF_OpenFont("Assets/Roboto/Roboto-Regular.ttf", 75);
-	SDL_Surface *titleTextSurface = TTF_RenderText_Blended(titleFont, "> Leaderboard", fontColor);
+	SDL_Surface *titleTextSurface = TTF_RenderText_Blended(titleFont, "LEADERBOARD", fontColor);
 	titleTexture = SDL_CreateTextureFromSurface(Globals::renderer, titleTextSurface);
 	SDL_FreeSurface(titleTextSurface);
 
@@ -27,7 +27,7 @@ LeaderboardScene::LeaderboardScene() {
 	SDL_QueryTexture(titleTexture, NULL, NULL, &titleRect.w, &titleRect.h);
 
 	// Add back button font --------------------------------------------------------------------------------------------------------------------------------------------------------
-	SDL_Surface *exitTextSurface = TTF_RenderText_Blended(font, "Back", fontColor);
+	SDL_Surface *exitTextSurface = TTF_RenderText_Blended(font, "BACK", fontColor);
 	backButtonTexture = SDL_CreateTextureFromSurface(Globals::renderer, exitTextSurface);
 	SDL_FreeSurface(exitTextSurface);
 

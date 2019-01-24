@@ -12,6 +12,7 @@ Player::Player(int x, int y, bool state) {
 	this->pos.x = x;
 	this->pos.y = y - frameHeight;
 	inGame = state;
+	gravity = 5000;
 }
 
 Player::~Player() {

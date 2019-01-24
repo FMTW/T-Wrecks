@@ -15,6 +15,7 @@ public:
 	virtual void draw(bool);
 
 	bool isGround = true;
+	int gravity;
 
 private:
 	SDL_Texture *idleTexture, *runTexture;
@@ -23,7 +24,6 @@ private:
 	bool faceLeft = false;
 	bool inGame = false;
 
-	int gravity = 5000;
 
 	void setupSprite(int);
 	void isFlip();

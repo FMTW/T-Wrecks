@@ -42,10 +42,17 @@ LevelTemplate::LevelTemplate() {
 	// Setup Score
 	isAlive = true;
 	score = 0;
-	font = TTF_OpenFont("Assets/MONO.ttf", 32); 
+	font = TTF_OpenFont("Assets/MONO.ttf", 46); 
 	scoreRect.x = 1000;
 	scoreRect.y = 40;
-	
+
+	// Setup Game Over Message
+	SDL_Surface *goSurface = TTF_RenderText_Blended(font, "GAME OVER", { 83, 83, 83 });
+	goTexture = SDL_CreateTextureFromSurface(Globals::renderer, goSurface);
+	SDL_FreeSurface(goSurface);
+	SDL_QueryTexture(goTexture, NULL, NULL, &goRect.w, &goRect.h);
+	goRect.x = 640 - (goRect.w / 2);
+	goRect.y = 360 - (goRect.h / 2);
 }
 
 LevelTemplate::~LevelTemplate() {
@@ -72,20 +79,30 @@ void LevelTemplate::update() {
 	}
 
 	// Update DeltaTime
-	dt = t->getDeltaTime();
+	if (isAlive){
+		dt = t->getDeltaTime();
+		// Update level objects
+		for (GameObject *lo : lvlObjects)
+			lo->update(dt);
 
-	// Update level objects
-	for (GameObject *lo : lvlObjects)
-		lo->update(dt);
+		// Update level objects
+		for (GameObject *oo : obstObjects)
+			oo->update(dt);
 
-	// Update level objects
-	for (GameObject *oo : obstObjects)
-		oo->update(dt);
-	
-	kbHandler->update(&event);
-	
-	checkCollision();
-	updateScore();
+		kbHandler->update(&event);
+		checkCollision();
+		updateScore();
+	}
+	else {
+		if (countDown == NULL)
+			countDown = SDL_GetTicks() + 3000;
+		cout << " Current Ticks: " << SDL_GetTicks()/1000 << "/" << countDown/1000 << endl;
+		if (SDL_GetTicks() >= countDown) {
+			Globals::gsm.popScene();
+			Globals::gsm.popScene();
+			Globals::gsm.pushScene(new LeaderboardScene());
+		}
+	}
 }
 
 void LevelTemplate::render() {
@@ -102,6 +119,9 @@ void LevelTemplate::render() {
 
 	// Copy Score Text to renderer
 	SDL_RenderCopy(Globals::renderer, scoreTexture, NULL, &scoreRect);
+	if (!isAlive) {
+		SDL_RenderCopy(Globals::renderer, goTexture, NULL, &goRect);
+	}
 
 	// Present all our renderings to the window when you have enough drawing stuffs
 	SDL_RenderPresent(Globals::renderer);

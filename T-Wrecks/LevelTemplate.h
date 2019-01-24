@@ -14,7 +14,7 @@
 #include "Pterosaur.h"
 
 #include "PauseScene.h"
-#include "EndScene.h"
+#include "LeaderboardScene.h"
 #include "TimeHandler.h"
 #include "KeyboardHandler.h"
 #include "CollisionHandler.h"
@@ -57,7 +57,10 @@ private:
 	bool isAlive;
 	int score;
 	TTF_Font *font;
-	SDL_Texture *scoreTexture;
-	SDL_Rect scoreRect;
+	SDL_Texture *scoreTexture, *goTexture;
+	SDL_Rect scoreRect, goRect;
 	char scoreStr[20];
+
+	// End Game Countdown
+	int countDown;
 };
