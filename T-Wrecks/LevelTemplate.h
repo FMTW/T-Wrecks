@@ -7,6 +7,7 @@
 #include "Globals.h"
 #include "GameScene.h"
 #include "GameObject.h"
+
 #include "Player.h"
 #include "Ground.h"
 #include "Cactus.h"
@@ -15,13 +16,14 @@
 
 #include "PauseScene.h"
 #include "LeaderboardScene.h"
+
 #include "TimeHandler.h"
 #include "KeyboardHandler.h"
 #include "CollisionHandler.h"
 
 class LevelTemplate : public GameScene {
 public:
-	LevelTemplate();
+	LevelTemplate(int);
 	~LevelTemplate();
 
 	//override those abstract methods inherited from GameScene
@@ -31,10 +33,19 @@ public:
 	virtual bool onExit();
 	virtual string getStateID() { return "LevelTemplate"; }
 
+	void setupObjects();
 	void checkCollision();
 	void updateScore();
+	void gameover();
+	void loadDebugInfo();
 
 private:
+	bool debugActive;
+	bool bonus = false;
+	bool medium = false;
+	bool hard = false;
+	float velMultiplier;
+
 	Player *player;
 	KeyboardHandler *kbHandler;
 

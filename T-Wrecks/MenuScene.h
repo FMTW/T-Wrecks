@@ -5,13 +5,18 @@
 #include "GameScene.h"
 #include "GameObject.h"
 #include "Button.h"
+
+#include "Player.h"
 #include "Ground.h"
 #include "Cactus.h"
 #include "Cloud.h"
 #include "Pterosaur.h"
 
-#include "LevelSelection.h"
+#include "KeyboardHandler.h"
+#include "TimeHandler.h"
+
 #include "LeaderboardScene.h"
+#include "PlayerSelectionScene.h"
 
 class MenuScene : public GameScene {
 public:

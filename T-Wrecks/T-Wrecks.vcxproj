@@ -94,7 +94,7 @@
     <ClCompile Include="IntroScene.cpp" />
     <ClCompile Include="KeyboardHandler.cpp" />
     <ClCompile Include="LeaderboardScene.cpp" />
-    <ClCompile Include="LevelSelection.cpp" />
+    <ClCompile Include="LevelSelectionScene.cpp" />
     <ClCompile Include="LevelTemplate.cpp" />
     <ClCompile Include="PauseScene.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -122,7 +122,7 @@
     <ClInclude Include="IntroScene.h" />
     <ClInclude Include="KeyboardHandler.h" />
     <ClInclude Include="LeaderboardScene.h" />
-    <ClInclude Include="LevelSelection.h" />
+    <ClInclude Include="LevelSelectionScene.h" />
     <ClInclude Include="LevelTemplate.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="MouseHandler.h" />

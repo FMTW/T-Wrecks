@@ -6,7 +6,7 @@ class Ground :
 	public GameObject
 {
 public:
-	Ground(bool);
+	Ground(bool, float);
 	~Ground();
 
 	virtual void update(float);
@@ -19,7 +19,6 @@ private:
 	SDL_Texture *groundTexture;
 	SDL_Rect groundRect;
 
-	int w, h;
 	bool inGame;
 };
 

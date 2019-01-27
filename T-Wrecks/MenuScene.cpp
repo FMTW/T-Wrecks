@@ -93,29 +93,29 @@ MenuScene::MenuScene() {
 	lvlObjects.push_back(player);
 
 	// Setup ground
-	ground = new Ground(false);
+	ground = new Ground(false, 1);
 	lvlObjects.push_back(ground);
 
 	// Setup cactus
-	c1 = new Cactus(false);
-	c2 = new Cactus(false);
-	c3 = new Cactus(false);
+	c1 = new Cactus(false, 1);
+	c2 = new Cactus(false, 1);
+	c3 = new Cactus(false, 1);
 	lvlObjects.push_back(c1);
 	lvlObjects.push_back(c2);
 	lvlObjects.push_back(c3);
 
 	// Setup clouds
-	cloud1 = new Cloud();
-	cloud2 = new Cloud();
-	cloud3 = new Cloud();
+	cloud1 = new Cloud(1);
+	cloud2 = new Cloud(1);
+	cloud3 = new Cloud(1);
 	lvlObjects.push_back(cloud1);
 	lvlObjects.push_back(cloud2);
 	lvlObjects.push_back(cloud3);
 
 	// Setup Pterosaur
-	ptsaur1 = new Pterosaur();
+	ptsaur1 = new Pterosaur(1);
+	ptsaur2 = new Pterosaur(1);
 	ptsaur1->setRenderer(Globals::renderer);
-	ptsaur2 = new Pterosaur();
 	ptsaur2->setRenderer(Globals::renderer);
 	lvlObjects.push_back(ptsaur1);
 	lvlObjects.push_back(ptsaur2);

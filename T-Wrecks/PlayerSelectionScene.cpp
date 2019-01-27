@@ -95,7 +95,7 @@ void PlayerSelectionScene::update() {
 			if (event.button.x >= startButton->pos.x && event.button.x <= startButton->pos.x + 400
 				&&
 				event.button.y >= startButton->pos.y && event.button.y <= startButton->pos.y + 70) {
-				Globals::gsm.pushScene(new LevelTemplate());
+				Globals::gsm.pushScene(new LevelSelectionScene());
 				return;
 			}
 		}

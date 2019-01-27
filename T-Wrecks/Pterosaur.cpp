@@ -1,7 +1,8 @@
 #include "Pterosaur.h"
 
-Pterosaur::Pterosaur() {
+Pterosaur::Pterosaur(float velMultiplier) {
 	vel.x = -(rand() % 100 + 250);
+	this->velMultiplier = velMultiplier;
 	setupSprite();
 }
 

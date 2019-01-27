@@ -13,11 +13,11 @@ LeaderboardScene::LeaderboardScene() {
 	renderObjects.push_back(backButton);
 
 	// Setup the font and font color
-	font = TTF_OpenFont("Assets/Roboto/Roboto-Regular.ttf", 32);
+	font = TTF_OpenFont("Assets/MONO.ttf", 32);
 	fontColor = { 83, 83, 83, 100 }; // RGBA
 
 	// Add title --------------------------------------------------------------------------------------------------------------------------------------------------------
-	TTF_Font *titleFont = TTF_OpenFont("Assets/Roboto/Roboto-Regular.ttf", 75);
+	TTF_Font *titleFont = TTF_OpenFont("Assets/MONO.ttf", 75);
 	SDL_Surface *titleTextSurface = TTF_RenderText_Blended(titleFont, "LEADERBOARD", fontColor);
 	titleTexture = SDL_CreateTextureFromSurface(Globals::renderer, titleTextSurface);
 	SDL_FreeSurface(titleTextSurface);

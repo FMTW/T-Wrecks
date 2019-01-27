@@ -6,7 +6,7 @@ class Pterosaur :
 	public GameObject
 {
 public:
-	Pterosaur();
+	Pterosaur(float);
 	~Pterosaur();
 
 	virtual void update(float);

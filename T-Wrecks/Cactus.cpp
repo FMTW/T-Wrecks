@@ -1,15 +1,14 @@
 #include "Cactus.h"
 
 
-Cactus::Cactus(bool state) {
-	randNum = rand() % 4 + 1;
-
+Cactus::Cactus(bool state, float velMultiplier) {
 	if (state)
 		randX = rand() % 1280 + 1281;
 	else
 		randX = rand() % 780 + 500;
+
 	randY = rand() % 20 + 700;
-	loadCactusTexture(randNum);
+	loadCactusTexture();
 	
 	vel.x = -500;
 	inGame = state;
@@ -37,8 +36,8 @@ void Cactus::draw(bool) {
 }
 
 // Take a int then choose which cactus to use;
-void Cactus::loadCactusTexture(int num) {
-	switch (num) {
+void Cactus::loadCactusTexture() {
+	switch (rand() % 4 + 1) {
 	case 1:
 		cactusTexture = IMG_LoadTexture(Globals::renderer, "Assets/Cactus_Small.png");
 		break;
@@ -54,7 +53,7 @@ void Cactus::loadCactusTexture(int num) {
 	}
 	SDL_QueryTexture(cactusTexture, NULL, NULL, &frameWidth, &frameHeight);
 	pos.x = randX;
-	pos.y = randY - frameHeight;
+	pos.y = (rand() % 20 + 700) - frameHeight;
 	cactusRect.w = frameWidth;
 	cactusRect.h = frameHeight;
 }
@@ -64,8 +63,7 @@ void Cactus::loadCactusTexture(int num) {
 void Cactus::checkBoundry() {
 	if (pos.x <= -frameWidth*2) {
 		pos.x = rand() % 1280 + 1281;
-		randNum = rand() % 4 + 1;
-		loadCactusTexture(randNum);
+		loadCactusTexture();
 	}
 }
 

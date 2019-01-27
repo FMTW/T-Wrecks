@@ -1,36 +1,29 @@
 #include "LevelTemplate.h"
 
-LevelTemplate::LevelTemplate() {
+LevelTemplate::LevelTemplate(int difficulty) {
+	// Setup difficulty of the game
+	velMultiplier = 1;
+	if (difficulty == 0)
+		bonus = true;
+	if (difficulty == 1) {
+		medium = true;
+		velMultiplier = 1.5;
+	}
+	if (difficulty == 2) {
+		hard = true;
+		velMultiplier = 2;
+	}
+	setupObjects();
+
+	// Setup backgroundRect
 	backgroundRect = { 0, 0, 1280, 720 };
 
-	// Setup Player
-	player = new Player(20, 560, true);
-	lvlObjects.push_back(player);
+	// Setup font
+	font = TTF_OpenFont("Assets/MONO.ttf", 46);
 
-	// Setup Ground
-	ground = new Ground(true);
-	lvlObjects.push_back(ground);
-
-	// Setup Clouds
-	cloud1 = new Cloud();
-	cloud2 = new Cloud();
-	cloud3 = new Cloud();
-	lvlObjects.push_back(cloud1);
-	lvlObjects.push_back(cloud2);
-	lvlObjects.push_back(cloud3);
-
-	// Setup Cactus
-	cactus = new Cactus(true);
-	cactus->setRenderer(Globals::renderer);
-	obstObjects.push_back(cactus);
-
-	// Setup Pterosaur
-	ptsaur1 = new Pterosaur();
-	ptsaur2 = new Pterosaur();
-	ptsaur3 = new Pterosaur();
-	obstObjects.push_back(ptsaur1);
-	obstObjects.push_back(ptsaur2);
-	obstObjects.push_back(ptsaur3);
+	// Setup variables
+	isAlive = true;
+	debugActive = false;
 
 	// Setup Keyboard Controller
 	kbHandler = new KeyboardHandler(true);
@@ -40,25 +33,33 @@ LevelTemplate::LevelTemplate() {
 	t = new TimeHandler();
 
 	// Setup Score
-	isAlive = true;
 	score = 0;
-	font = TTF_OpenFont("Assets/MONO.ttf", 46); 
-	scoreRect.x = 1000;
-	scoreRect.y = 40;
+	scoreRect = { 1000, 40 };
 
 	// Setup Game Over Message
 	SDL_Surface *goSurface = TTF_RenderText_Blended(font, "GAME OVER", { 83, 83, 83 });
 	goTexture = SDL_CreateTextureFromSurface(Globals::renderer, goSurface);
 	SDL_FreeSurface(goSurface);
 	SDL_QueryTexture(goTexture, NULL, NULL, &goRect.w, &goRect.h);
-	goRect.x = 640 - (goRect.w / 2);
-	goRect.y = 360 - (goRect.h / 2);
+	goRect = { (640 - (goRect.w / 2)), (300 - (goRect.h / 2)) };
+
 }
 
 LevelTemplate::~LevelTemplate() {
 	SDL_DestroyTexture(scoreTexture);
-}
+	SDL_DestroyTexture(goTexture);
 
+	lvlObjects.empty();
+	obstObjects.empty();
+	delete player;
+	delete ground;
+	delete cactus;
+	delete cloud1, cloud2, cloud3;
+	if (medium || hard)
+		delete ptsaur1, ptsaur2, ptsaur3;
+	delete kbHandler;
+	delete t;
+}
 
 void LevelTemplate::update() {
 	// Check for input
@@ -75,11 +76,18 @@ void LevelTemplate::update() {
 				Globals::gsm.pushScene(new PauseScene());
 				return;
 			}
+
+			if (event.key.keysym.scancode == SDL_SCANCODE_F1) {
+				if (debugActive)
+					debugActive = false;
+				else
+					debugActive = true;
+			}
 		}
 	}
 
-	// Update DeltaTime
-	if (isAlive){
+	// Update Game if player is still alive
+	if (isAlive) {
 		dt = t->getDeltaTime();
 		// Update level objects
 		for (GameObject *lo : lvlObjects)
@@ -93,16 +101,11 @@ void LevelTemplate::update() {
 		checkCollision();
 		updateScore();
 	}
-	else {
-		if (countDown == NULL)
-			countDown = SDL_GetTicks() + 3000;
-		cout << " Current Ticks: " << SDL_GetTicks()/1000 << "/" << countDown/1000 << endl;
-		if (SDL_GetTicks() >= countDown) {
-			Globals::gsm.popScene();
-			Globals::gsm.popScene();
-			Globals::gsm.pushScene(new LeaderboardScene());
-		}
-	}
+	//else
+		//gameover();
+
+	if (debugActive)
+		loadDebugInfo();
 }
 
 void LevelTemplate::render() {
@@ -137,20 +140,83 @@ bool LevelTemplate::onExit() {
 	return true;
 }
 
+// Setup all the objects and push them to the list
+void LevelTemplate::setupObjects() {
+	// Setup Player
+	player = new Player(20, 560, true);
+	lvlObjects.push_back(player);
+
+	// Setup Ground
+	ground = new Ground(true, velMultiplier);
+	lvlObjects.push_back(ground);
+
+	// Setup Clouds
+	cloud1 = new Cloud(velMultiplier);
+	cloud2 = new Cloud(velMultiplier);
+	cloud3 = new Cloud(velMultiplier);
+	lvlObjects.push_back(cloud1);
+	lvlObjects.push_back(cloud2);
+	lvlObjects.push_back(cloud3);
+
+	// Setup Cactus
+	cactus = new Cactus(true, velMultiplier);
+	cactus->setRenderer(Globals::renderer);
+	obstObjects.push_back(cactus);
+
+	if (medium || hard) {
+		// Setup Pterosaur
+		ptsaur1 = new Pterosaur(velMultiplier);
+		ptsaur2 = new Pterosaur(velMultiplier);
+		ptsaur3 = new Pterosaur(velMultiplier);
+		obstObjects.push_back(ptsaur1);
+		obstObjects.push_back(ptsaur2);
+		obstObjects.push_back(ptsaur3);
+	}
+
+}
+
+// Check collision for player and all objects in obstObjects list
 void LevelTemplate::checkCollision() {
 	for (GameObject *obst : obstObjects)
 		if (!CollisionHandler::checkCollision(*player, *obst))
 			isAlive = false;
 }
 
+// Calculate the score then display on the screen
 void LevelTemplate::updateScore() {
 	if (isAlive)
 		score += (dt / dt);
 	sprintf_s(scoreStr, "Score: %d", score);
-	cout << scoreStr << endl;
 	SDL_Surface *scoreSurface = TTF_RenderText_Blended(font, scoreStr, { 83, 83, 83 });
 	scoreTexture = SDL_CreateTextureFromSurface(Globals::renderer, scoreSurface);
 	SDL_FreeSurface(scoreSurface);
 	SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreRect.w, &scoreRect.h);
 
+}
+
+// Do this when game is finished
+void LevelTemplate::gameover() {
+	if (countDown == NULL)
+		countDown = SDL_GetTicks() + 3000;
+	if (SDL_GetTicks() >= countDown) {
+		Globals::gsm.popScene();
+		Globals::gsm.popScene();
+		Globals::gsm.pushScene(new LeaderboardScene());
+	}
+}
+
+// Load information of the objects in this level
+void LevelTemplate::loadDebugInfo() {
+	system("cls");
+	cout << "  Debug Infos\n";
+	cout << "    " << scoreStr << endl;
+	cout << "  Object Velocity:\n";
+	cout << "    Cloud 1: " << cloud1->vel.x << endl;
+	cout << "    Cloud 2: " << cloud2->vel.x << endl;
+	cout << "    Cloud 3: " << cloud3->vel.x << endl;
+	cout << "    Pterosaur 1: " << ptsaur1->vel.x << endl;
+	cout << "    Pterosaur 2: " << ptsaur2->vel.x << endl;
+	cout << "    Pterosaur 3: " << ptsaur3->vel.x << endl;
+	cout << "    Cactus: " << cactus->vel.x << endl;
+	cout << "    Ground: " << ground->vel.x << endl;
 }

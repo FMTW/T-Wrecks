@@ -5,12 +5,12 @@ class Cactus :
 	public GameObject
 {
 public:
-	Cactus(bool);
+	Cactus(bool, float);
 	~Cactus();
 
 	virtual void update(float);
 	virtual void draw(bool);
-	void loadCactusTexture(int);
+	void loadCactusTexture();
 	void checkBoundry();
 	void checkPosition();
 
@@ -19,5 +19,5 @@ private:
 	SDL_Rect cactusRect;
 
 	bool inGame;
-	int randNum, randX, randY;
+	int randX, randY;
 };

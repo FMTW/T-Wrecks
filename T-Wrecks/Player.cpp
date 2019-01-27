@@ -22,7 +22,6 @@ Player::~Player() {
 	delete run;
 }
 
-
 void Player::update(float dt) {
 	updateMovement(dt);
 

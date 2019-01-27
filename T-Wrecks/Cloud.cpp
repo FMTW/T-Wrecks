@@ -1,7 +1,8 @@
 #include "Cloud.h"
 
-Cloud::Cloud() {
+Cloud::Cloud(float velMultiplier) {
 	vel.x = -(rand() % 100 + 100);
+	this->velMultiplier = velMultiplier;
 	loadTexture();
 }
 
