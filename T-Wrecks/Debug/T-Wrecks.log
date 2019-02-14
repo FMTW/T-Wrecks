@@ -1,3 +1,10 @@
-﻿  KeyboardHandler.cpp
+﻿  IntroScene.cpp
 c:\users\user\documents\github\t-wrecks\t-wrecks\animation.h(28): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  MenuScene.cpp
+c:\users\user\documents\github\t-wrecks\t-wrecks\animation.h(28): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Source.cpp
+c:\users\user\documents\github\t-wrecks\t-wrecks\animation.h(28): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\user\documents\github\t-wrecks\t-wrecks\source.cpp(22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
+c:\users\user\documents\github\t-wrecks\t-wrecks\source.cpp(80): warning C4715: 'initialize': not all control paths return a value
   T-Wrecks.vcxproj -> C:\Users\User\Documents\GitHub\T-Wrecks\Debug\T-Wrecks.exe

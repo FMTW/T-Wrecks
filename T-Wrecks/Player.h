@@ -27,7 +27,5 @@ private:
 
 	void setupSprite(int);
 	void isFlip();
-	void initialGravity(int);
-	void checkPlayerBoundry();
 };
 

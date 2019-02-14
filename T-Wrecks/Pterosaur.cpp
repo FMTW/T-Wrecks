@@ -1,9 +1,10 @@
 #include "Pterosaur.h"
 
-Pterosaur::Pterosaur(float velMultiplier) {
+Pterosaur::Pterosaur(float velMultiplier, bool isHard) {
 	vel.x = -(rand() % 100 + 250);
 	this->velMultiplier = velMultiplier;
 	setupSprite();
+	this->isHard = isHard;
 }
 
 Pterosaur::~Pterosaur() {
@@ -11,6 +12,7 @@ Pterosaur::~Pterosaur() {
 }
 
 void Pterosaur::update(float dt) {
+	vel.x -= velMultiplier * dt;
 	updateMovement(dt);
 	animation->update(dt);
 	checkBoundry();
@@ -36,7 +38,7 @@ void Pterosaur::checkBoundry() {
 		pos.y = rand() % 30 + 300;
 		vel.x = -(rand() % 100 + 250);
 
-		if ((rand() % 5 + 1) <= 2) {
+		if (((rand() % 5 + 1) <= 2) && isHard) {
 			pos.y = rand() % 30 + 500;
 			vel.x = -(rand() % 100 + 1000);
 		}

@@ -19,9 +19,6 @@
     <Filter Include="Header Files\Scenes">
       <UniqueIdentifier>{21a093b1-1ce9-43bc-ae7a-747fa6dc2cfb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Scenes\Levels">
-      <UniqueIdentifier>{b91314c1-236d-4a41-a0b9-960e047af0e4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Objects">
       <UniqueIdentifier>{dcf7f7f2-e05a-42be-8775-7fa9b0844e2f}</UniqueIdentifier>
     </Filter>
@@ -39,9 +36,6 @@
     </Filter>
     <Filter Include="Source Files\Scenes">
       <UniqueIdentifier>{bc290e94-dfb0-4f65-8b05-0911971e2fe2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scenes\Levels">
-      <UniqueIdentifier>{c5ee88a1-1277-4613-9d6b-516b34b8c7fc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -120,7 +114,7 @@
     <ClCompile Include="LevelSelectionScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="LevelTemplate.cpp">
+    <ClCompile Include="LevelScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -148,9 +142,6 @@
     </ClInclude>
     <ClInclude Include="LeaderboardScene.h">
       <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelTemplate.h">
-      <Filter>Header Files\Scenes\Levels</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files\Objects</Filter>
@@ -198,6 +189,9 @@
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="LevelSelectionScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>

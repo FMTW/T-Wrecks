@@ -10,7 +10,7 @@
 #include "GameObject.h"
 #include "Button.h"
 
-#include "LevelTemplate.h"
+#include "LevelScene.h"
 #include "PlayerSelectionScene.h"
 
 class LevelSelectionScene : public GameScene {

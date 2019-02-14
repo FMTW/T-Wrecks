@@ -16,7 +16,7 @@ LeaderboardScene::LeaderboardScene() {
 	font = TTF_OpenFont("Assets/MONO.ttf", 32);
 	fontColor = { 83, 83, 83, 100 }; // RGBA
 
-	// Add title --------------------------------------------------------------------------------------------------------------------------------------------------------
+	// Add Title --------------------------------------------------------------------------------------------------------------------------------------------------------
 	TTF_Font *titleFont = TTF_OpenFont("Assets/MONO.ttf", 75);
 	SDL_Surface *titleTextSurface = TTF_RenderText_Blended(titleFont, "LEADERBOARD", fontColor);
 	titleTexture = SDL_CreateTextureFromSurface(Globals::renderer, titleTextSurface);
@@ -25,6 +25,33 @@ LeaderboardScene::LeaderboardScene() {
 	titleRect.x = 40;
 	titleRect.y = 40;
 	SDL_QueryTexture(titleTexture, NULL, NULL, &titleRect.w, &titleRect.h);
+
+	// Add Easy --------------------------------------------------------------------------------------------------------------------------------------------------------
+	SDL_Surface *easyTextSurface = TTF_RenderText_Blended(font, "EASY", fontColor);
+	easyTexture = SDL_CreateTextureFromSurface(Globals::renderer, easyTextSurface);
+	SDL_FreeSurface(easyTextSurface);
+
+	easyRect.x = 280;
+	easyRect.y = 300;
+	SDL_QueryTexture(easyTexture, NULL, NULL, &easyRect.w, &easyRect.h);
+
+	// Add Normal --------------------------------------------------------------------------------------------------------------------------------------------------------
+	SDL_Surface *normalTextSurface = TTF_RenderText_Blended(font, "NORMAL", fontColor);
+	normalTexture = SDL_CreateTextureFromSurface(Globals::renderer, normalTextSurface);
+	SDL_FreeSurface(normalTextSurface);
+
+	normalRect.x = 600;
+	normalRect.y = 300;
+	SDL_QueryTexture(normalTexture, NULL, NULL, &normalRect.w, &normalRect.h);
+
+	// Add Hard --------------------------------------------------------------------------------------------------------------------------------------------------------
+	SDL_Surface *hardTextSurface = TTF_RenderText_Blended(font, "HARD", fontColor);
+	hardTexture = SDL_CreateTextureFromSurface(Globals::renderer, hardTextSurface);
+	SDL_FreeSurface(hardTextSurface);
+
+	hardRect.x = 920;
+	hardRect.y = 300;
+	SDL_QueryTexture(hardTexture, NULL, NULL, &hardRect.w, &hardRect.h);
 
 	// Add back button font --------------------------------------------------------------------------------------------------------------------------------------------------------
 	SDL_Surface *exitTextSurface = TTF_RenderText_Blended(font, "BACK", fontColor);
@@ -42,6 +69,9 @@ LeaderboardScene::LeaderboardScene() {
 LeaderboardScene::~LeaderboardScene() {
 	SDL_DestroyTexture(backgroundTexture);
 	SDL_DestroyTexture(titleTexture);
+	SDL_DestroyTexture(easyTexture);
+	SDL_DestroyTexture(normalTexture);
+	SDL_DestroyTexture(hardTexture);
 	SDL_DestroyTexture(backButtonTexture);
 }
 
@@ -88,6 +118,9 @@ void LeaderboardScene::render() {
 
 	// Render textTexture
 	SDL_RenderCopy(Globals::renderer, titleTexture, NULL, &titleRect);
+	SDL_RenderCopy(Globals::renderer, easyTexture, NULL, &easyRect);
+	SDL_RenderCopy(Globals::renderer, normalTexture, NULL, &normalRect);
+	SDL_RenderCopy(Globals::renderer, hardTexture, NULL, &hardRect);
 	SDL_RenderCopy(Globals::renderer, backButtonTexture, NULL, &backButtonRect);
 
 	// Present all our renderings to the window when you have enough drawing stuffs

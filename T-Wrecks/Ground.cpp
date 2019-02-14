@@ -20,7 +20,7 @@ Ground::~Ground() {
 // update stuffs
 void Ground::update(float dt) {
 	if (inGame) {
-		vel.x -= velMultiplier * dt * 50;
+		vel.x -= velMultiplier * dt;
 		updateMovement(dt);
 	}
 

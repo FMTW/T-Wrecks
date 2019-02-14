@@ -47,10 +47,8 @@ void Player::update(float dt) {
 			idle->update(dt);
 
 		isFlip();
-		checkPlayerBoundry();
 	}
 
-	initialGravity(dt);
 	if (pos.y < 600) {
 		vel.y += gravity * dt;
 		isGround = false;
@@ -84,15 +82,4 @@ void Player::isFlip() {
 		faceLeft = false;
 	else if (vel.x < 0)
 		faceLeft = true;
-}
-
-void Player::initialGravity(int dt){
-}
-
-// Reset Player position if move out of the screen
-void Player::checkPlayerBoundry() {
-	if (pos.x < -228)
-		pos.x = 1380;
-	if (pos.x > 1380)
-		pos.x = -228;
 }

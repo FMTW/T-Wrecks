@@ -49,7 +49,7 @@ LevelSelectionScene::LevelSelectionScene() {
 
 
 	// Add Level 1 button font --------------------------------------------------------------------------------------------------------------------------------------------------------
-	SDL_Surface *lvl1TextSurface = TTF_RenderText_Blended(font, "LEVEL 1", fontColor);
+	SDL_Surface *lvl1TextSurface = TTF_RenderText_Blended(font, "EASY", fontColor);
 	lvl1ButtonTexture = SDL_CreateTextureFromSurface(Globals::renderer, lvl1TextSurface);
 	SDL_FreeSurface(lvl1TextSurface);
 
@@ -59,7 +59,7 @@ LevelSelectionScene::LevelSelectionScene() {
 
 
 	// Add Level 2 button font --------------------------------------------------------------------------------------------------------------------------------------------------------
-	SDL_Surface *lvl2TextSurface = TTF_RenderText_Blended(font, "LEVEL 2", fontColor);
+	SDL_Surface *lvl2TextSurface = TTF_RenderText_Blended(font, "NORMAL", fontColor);
 	lvl2ButtonTexture = SDL_CreateTextureFromSurface(Globals::renderer, lvl2TextSurface);
 	SDL_FreeSurface(lvl2TextSurface);
 
@@ -69,7 +69,7 @@ LevelSelectionScene::LevelSelectionScene() {
 
 
 	// Add Level 3 button font --------------------------------------------------------------------------------------------------------------------------------------------------------
-	SDL_Surface *lvl3TextSurface = TTF_RenderText_Blended(font, "LEVEL 3", fontColor);
+	SDL_Surface *lvl3TextSurface = TTF_RenderText_Blended(font, "HARD", fontColor);
 	lvl3ButtonTexture = SDL_CreateTextureFromSurface(Globals::renderer, lvl3TextSurface);
 	SDL_FreeSurface(lvl3TextSurface);
 
@@ -116,9 +116,7 @@ void LevelSelectionScene::update() {
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
 			if (event.button.x >= lvl1Button->pos.x && event.button.x <= lvl1Button->pos.x + 320
 				&& event.button.y >= lvl1Button->pos.y && event.button.y <= lvl1Button->pos.y + 60) {
-				// Switch to "Level1" Scene
-				// Testing Purpose
-				Globals::gsm.pushScene(new LevelTemplate(1));
+				Globals::gsm.pushScene(new LevelScene(1));
 			}
 		}
 
@@ -127,9 +125,7 @@ void LevelSelectionScene::update() {
 			if (event.button.x >= lvl2Button->pos.x && event.button.x <= lvl2Button->pos.x + 320
 				&&
 				event.button.y >= lvl2Button->pos.y && event.button.y <= lvl2Button->pos.y + 60) {
-				// Push scene for player to choose character
-				//Globals::gsm.pushScene(new PlayerSelectionScene());
-				// then push anothe scene for level
+				Globals::gsm.pushScene(new LevelScene(2));
 			}
 		}
 
@@ -138,9 +134,7 @@ void LevelSelectionScene::update() {
 			if (event.button.x >= lvl3Button->pos.x && event.button.x <= lvl3Button->pos.x + 320
 				&&
 				event.button.y >= lvl3Button->pos.y && event.button.y <= lvl3Button->pos.y + 60) {
-				// Push scene for player to choose character
-				//Globals::gsm.pushScene(new PlayerSelectionScene());
-				// then push anothe scene for level
+				Globals::gsm.pushScene(new LevelScene(3));
 			}
 		}
 

@@ -11,6 +11,7 @@ Cactus::Cactus(bool state, float velMultiplier) {
 	loadCactusTexture();
 	
 	vel.x = -500;
+	this->velMultiplier = velMultiplier;
 	inGame = state;
 }
 
@@ -19,19 +20,17 @@ Cactus::~Cactus() {
 }
 
 void Cactus::update(float dt) {
-	if (inGame)
+	if (inGame) {
+		vel.x -= velMultiplier * dt;
 		updateMovement(dt);
-
+	}
 	checkBoundry();
-	//checkPosition();
 
 	cactusRect.x = pos.x;
 	cactusRect.y = pos.y;
 }
 
 void Cactus::draw(bool) {
-	//SDL_SetRenderDrawColor(Globals::renderer, 100, 100, 100, 100);
-	//SDL_RenderFillRect(Globals::renderer, &cactusRect);
 	SDL_RenderCopy(Globals::renderer, cactusTexture, NULL, &cactusRect);
 }
 
@@ -53,7 +52,7 @@ void Cactus::loadCactusTexture() {
 	}
 	SDL_QueryTexture(cactusTexture, NULL, NULL, &frameWidth, &frameHeight);
 	pos.x = randX;
-	pos.y = (rand() % 20 + 700) - frameHeight;
+	pos.y = (rand() % 10 + 700) - frameHeight;
 	cactusRect.w = frameWidth;
 	cactusRect.h = frameHeight;
 }

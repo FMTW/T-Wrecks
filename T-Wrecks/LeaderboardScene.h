@@ -30,8 +30,8 @@ private:
 	TTF_Font *font;
 	SDL_Color fontColor;
 
-	SDL_Texture *backgroundTexture, *titleTexture, *backButtonTexture;
-	SDL_Rect backgroundRect, titleRect, backButtonRect;
+	SDL_Texture *backgroundTexture, *titleTexture, *easyTexture, *normalTexture, *hardTexture, *backButtonTexture;
+	SDL_Rect backgroundRect, titleRect, easyRect, normalRect, hardRect, backButtonRect;
 
 	// List of stuffs to render;
 	list<GameObject*> renderObjects;

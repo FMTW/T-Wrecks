@@ -12,6 +12,7 @@ Cloud::~Cloud() {
 }
 
 void Cloud::update(float dt) {
+	vel.x -= velMultiplier * dt;
 	updateMovement(dt);
 	checkBoundry();
 	//checkPosition();

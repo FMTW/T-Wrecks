@@ -8,14 +8,14 @@ MenuScene::MenuScene() {
 	playButton = new Button();
 	playButton->setRenderer(Globals::renderer);
 	playButton->pos.x = 40;
-	playButton->pos.y = 385;
+	playButton->pos.y = 460; // 385
 
 	renderObjects.push_back(playButton);
 
 	leaderboardButton = new Button();
 	leaderboardButton->setRenderer(Globals::renderer);
 	leaderboardButton->pos.x = 40;
-	leaderboardButton->pos.y = 460;
+	leaderboardButton->pos.y = 535; // 460
 
 	renderObjects.push_back(leaderboardButton);
 
@@ -24,7 +24,7 @@ MenuScene::MenuScene() {
 	settingButton->pos.x = 40;
 	settingButton->pos.y = 535;
 
-	renderObjects.push_back(settingButton);
+	//renderObjects.push_back(settingButton);
 
 	exitButton = new Button();
 	exitButton->setRenderer(Globals::renderer);
@@ -55,7 +55,7 @@ MenuScene::MenuScene() {
 	SDL_FreeSurface(playTextSurface);
 
 	playButtonRect.x = 70;
-	playButtonRect.y = 395;
+	playButtonRect.y = 470; // 395
 	SDL_QueryTexture(playButtonTexture, NULL, NULL, &playButtonRect.w, &playButtonRect.h);
 
 	
@@ -65,7 +65,7 @@ MenuScene::MenuScene() {
 	SDL_FreeSurface(leaderboardTextSurface);
 
 	leaderboardButtonRect.x = 70;
-	leaderboardButtonRect.y = 470;
+	leaderboardButtonRect.y = 545; // 470
 	SDL_QueryTexture(leaderboardButtonTexture, NULL, NULL, &leaderboardButtonRect.w, &leaderboardButtonRect.h);
 
 	// Add setting button font --------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -113,8 +113,8 @@ MenuScene::MenuScene() {
 	lvlObjects.push_back(cloud3);
 
 	// Setup Pterosaur
-	ptsaur1 = new Pterosaur(1);
-	ptsaur2 = new Pterosaur(1);
+	ptsaur1 = new Pterosaur(1, false);
+	ptsaur2 = new Pterosaur(1, false);
 	ptsaur1->setRenderer(Globals::renderer);
 	ptsaur2->setRenderer(Globals::renderer);
 	lvlObjects.push_back(ptsaur1);
@@ -173,10 +173,10 @@ void MenuScene::update() {
 				&&
 				event.button.y >= playButton->pos.y && event.button.y <= playButton->pos.y + 60) {
 				// Switch to "Level Selection" Scene
-				Globals::gsm.pushScene(new PlayerSelectionScene());
+				Globals::gsm.pushScene(new LevelSelectionScene());
 			}
 		}
-		
+
 		// Switch to Leaderboard Scene when button is pressed
 		if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
 			if (event.button.x >= leaderboardButton->pos.x && event.button.x <= leaderboardButton->pos.x + 320
@@ -197,6 +197,17 @@ void MenuScene::update() {
 				return;
 			}
 		}
+
+		if (player->pos.x > 1280) {
+			Globals::gsm.pushScene(new LevelSelectionScene());
+			player->pos.x = 350;
+		}
+		if (player->pos.x < -200) {
+			Globals::quitGame = true;
+			Globals::gsm.popScene();
+			return;
+		}
+
 		keyboardHandler->update(&event);
 	}
 
@@ -208,10 +219,11 @@ void MenuScene::update() {
 	mousePos = mouseHandler->getMouseState();
 }
 
+
 void MenuScene::render() {
 	// Render Background
 	SDL_SetRenderDrawColor(Globals::renderer, 244, 244, 244, 100);
-	SDL_RenderFillRect(Globals::renderer, &backgroundRect);
+	SDL_RenderClear(Globals::renderer);
 
 	for (GameObject *ro : renderObjects)
 		ro->draw(ro->checkIfHover(mousePos));
@@ -223,7 +235,7 @@ void MenuScene::render() {
 	SDL_RenderCopy(Globals::renderer, titleTexture, NULL, &titleRect);
 	SDL_RenderCopy(Globals::renderer, playButtonTexture, NULL, &playButtonRect);
 	SDL_RenderCopy(Globals::renderer, leaderboardButtonTexture, NULL, &leaderboardButtonRect);
-	SDL_RenderCopy(Globals::renderer, settingButtonTexture, NULL, &settingButtonRect);
+	//SDL_RenderCopy(Globals::renderer, settingButtonTexture, NULL, &settingButtonRect);
 	SDL_RenderCopy(Globals::renderer, exitButtonTexture, NULL, &exitButtonRect);
 
 
