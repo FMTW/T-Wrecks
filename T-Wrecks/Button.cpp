@@ -1,20 +1,14 @@
 #include "Button.h"
 #include <iostream>
 
-Button::Button() {
-	this->w = 320;
-	this->h = 60;
+Button::Button(int x, int y) {
+	w = 320;
+	h = 60;
+	pos.x = x;
+	pos.y = y;
 }
 
-Button::Button(int _w, int _h) {
-	this->w = _w;
-	this->h = _h;
-}
-
-
-Button::~Button() {
-
-}
+Button::~Button() {}
 
 void Button::draw(bool _ifHover) {
 	SDL_Rect button = { pos.x, pos.y, w, h };

@@ -5,10 +5,7 @@ LeaderboardScene::LeaderboardScene() {
 	backgroundRect = { 0, 0, 1280, 720 };
 
 	// Button default is (370 * 50), But it also takes two params Button(w, h);
-	backButton = new Button();
-	backButton->setRenderer(Globals::renderer);
-	backButton->pos.x = 40;
-	backButton->pos.y = 610;
+	backButton = new Button(40, 610);
 
 	renderObjects.push_back(backButton);
 

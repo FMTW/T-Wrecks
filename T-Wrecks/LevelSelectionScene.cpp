@@ -5,34 +5,16 @@ LevelSelectionScene::LevelSelectionScene() {
 	backgroundRect = { 0, 0, 1600, 900 };
 	
 	// Button default is (370 * 50), But it also takes two params Button(w, h);
-	lvl1Button = new Button();
-	lvl1Button->setRenderer(Globals::renderer);
-	lvl1Button->pos.x = 40;
-	lvl1Button->pos.y = 385;
+	lvl1Button = new Button(40, 385);
+	lvl2Button = new Button(40, 460);
+	lvl3Button = new Button(40, 535);
+	backButton = new Button(40, 610);
 
-	renderObjects.push_back(lvl1Button);
-
-	lvl2Button = new Button();
-	lvl2Button->setRenderer(Globals::renderer);
-	lvl2Button->pos.x = 40;
-	lvl2Button->pos.y = 460;
-
+	renderObjects.push_back(lvl1Button); 
 	renderObjects.push_back(lvl2Button);
-
-	lvl3Button = new Button();
-	lvl3Button->setRenderer(Globals::renderer);
-	lvl3Button->pos.x = 40;
-	lvl3Button->pos.y = 535;
-
 	renderObjects.push_back(lvl3Button);
-
-	backButton = new Button();
-	backButton->setRenderer(Globals::renderer);
-	backButton->pos.x = 40;
-	backButton->pos.y = 610;
-
 	renderObjects.push_back(backButton);
-	
+
 	// Setup the font and font color
 	font = TTF_OpenFont("Assets/MONO.ttf", 32);
 	fontColor = { 83, 83, 83, 100 }; // RGBA

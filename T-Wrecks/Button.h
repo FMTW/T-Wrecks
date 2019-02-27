@@ -5,7 +5,6 @@
 class Button : public GameObject
 {
 public:
-	Button();
 	Button(int, int);
 	~Button();
 
@@ -13,7 +12,7 @@ public:
 	bool checkIfHover(Vector);
 
 private:
-	int w, h, mx, my;
+	int w, h;
 
 };
 

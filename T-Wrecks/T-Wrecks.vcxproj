@@ -45,8 +45,8 @@
     <LibraryPath>C:\Users\wulia\Documents\Repos\T-Wrecks\SDL2_2015\lib\x86;C:\Users\wulia\Documents\Repos\Shadow-Tunnel\SDL2_2015\lib\x86;C:\Users\User\Documents\GitHub\T-Wrecks\SDL2_2015\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>E:\OneDrive\AIT\2018 Winter Semester\Basic Game Engine\Assignment 1\Shadow Tunnel\SDL2_2015\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\OneDrive\AIT\2018 Winter Semester\Basic Game Engine\Assignment 1\Shadow Tunnel\SDL2_2015\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\OneDrive\AIT\2018 Winter Semester\Basic Game Engine\Assignment 1\Shadow Tunnel\SDL2_2015\include;C:\Users\wulia\Documents\Repos\T-Wrecks\SDL2_2015\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\wulia\Documents\Repos\T-Wrecks\SDL2_2015\lib\x86;E:\OneDrive\AIT\2018 Winter Semester\Basic Game Engine\Assignment 1\Shadow Tunnel\SDL2_2015\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -84,7 +84,6 @@
     <ClCompile Include="Cactus.cpp" />
     <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="CollisionHandler.cpp" />
-    <ClCompile Include="EndScene.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameSceneManager.cpp" />
@@ -112,7 +111,6 @@
     <ClInclude Include="Cactus.h" />
     <ClInclude Include="Cloud.h" />
     <ClInclude Include="CollisionHandler.h" />
-    <ClInclude Include="EndScene.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSceneManager.h" />

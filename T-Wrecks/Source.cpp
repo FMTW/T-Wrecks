@@ -6,6 +6,7 @@
 
 #include "Globals.h"
 #include "IntroScene.h"
+#include "MenuScene.h"
 
 using namespace std;
 
@@ -83,7 +84,7 @@ int main(int argc, char **argv){
 	// Initialize stuffs
 	initialize();
 	
-	Globals::gsm.pushScene(new IntroScene());
+	Globals::gsm.pushScene(new MenuScene());
 
 	bool loop = true;
 	while (loop) {

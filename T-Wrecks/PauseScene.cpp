@@ -4,26 +4,13 @@
 PauseScene::PauseScene() {
 	backgroundRect = {0, 0, 1280, 720};
 	// Button Related Stuffs -----------------------------------------------------------------------------------
-		// Button default is (370 * 50), But it also takes two params Button(w, h);
-	resumeButton = new Button();
-	resumeButton->setRenderer(Globals::renderer);
-	resumeButton->pos.x = 40;
-	resumeButton->pos.y = 460;
+	// Button default is (370 * 50), But it also takes two params Button(w, h);
+	resumeButton = new Button(40, 460);
+	restartButton = new Button(40, 535);
+	backToMenuButton = new Button(40, 610);
 
 	buttonObjects.push_back(resumeButton);
-
-	restartButton = new Button();
-	restartButton->setRenderer(Globals::renderer);
-	restartButton->pos.x = 40;
-	restartButton->pos.y = 535;
-
 	buttonObjects.push_back(restartButton);
-
-	backToMenuButton = new Button();
-	backToMenuButton->setRenderer(Globals::renderer);
-	backToMenuButton->pos.x = 40;
-	backToMenuButton->pos.y = 610;
-
 	buttonObjects.push_back(backToMenuButton);
 
 	// Font Related Stuffs -----------------------------------------------------------------------------------

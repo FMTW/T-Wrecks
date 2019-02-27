@@ -6,18 +6,10 @@ PlayerSelectionScene::PlayerSelectionScene() {
 	// Button Related Stuffs -----------------------------------------------------------------------------------
 	// Button default is (370 * 50), But it also takes two params Button(w, h);
 	
-	startButton = new Button();
-	startButton->setRenderer(Globals::renderer);
-	startButton->pos.x = 40;
-	startButton->pos.y = 535;
+	startButton = new Button(40, 535);
+	backButton = new Button(40, 610);
 
 	renderObjects.push_back(startButton);
-
-	backButton = new Button();
-	backButton->setRenderer(Globals::renderer);
-	backButton->pos.x = 40;
-	backButton->pos.y = 610;
-
 	renderObjects.push_back(backButton);
 
 	// Font Related Stuffs -----------------------------------------------------------------------------------

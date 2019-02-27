@@ -32,6 +32,9 @@ public:
 		return "MenuScene";
 	}
 
+	void setupObjects();
+	void setupButtons();
+
 private:
 	Player *player;
 
