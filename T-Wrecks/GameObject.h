@@ -12,7 +12,7 @@ public:
 	Vector pos;  // Position
 	Vector vel;  // Velocity
 	int frameWidth, frameHeight;
-
+	float velMultiplier;
 	void setRenderer(SDL_Renderer*);
 
 	virtual void update(float);

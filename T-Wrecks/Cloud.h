@@ -5,7 +5,7 @@ class Cloud :
 	public GameObject
 {
 public:
-	Cloud();
+	Cloud(float);
 	~Cloud();
 
 	virtual void update(float);

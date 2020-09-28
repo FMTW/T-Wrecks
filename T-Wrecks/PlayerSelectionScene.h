@@ -10,7 +10,7 @@
 #include "Button.h"
 #include "Player.h"
 #include "Animation.h"
-#include "LevelTemplate.h"
+#include "LevelSelectionScene.h"
 
 class PlayerSelectionScene : public GameScene {
 public:
@@ -35,11 +35,12 @@ private:
 	SDL_Texture *titleTexture, *startButtonTexture, *backButtonTexture;
 	SDL_Rect backgroundRect, titleRect, startButtonRect, backButtonRect;
 
-	Player *character0, *character1, *character2;
+	Player *character0, *character1, *character2, *player;
 
 	// List of Objects to render
 	list<GameObject*> renderObjects;
 	list<GameObject*> playerObjects;
+	list<GameObject*> lvlObjects;
 
 	// Time related stuffs
 	Uint32 lastUpdate;
@@ -47,6 +48,7 @@ private:
 
 	// Input Handler for MenuScene
 	MouseHandler *mouseHandler;
+	KeyboardHandler *keyboardHandler;
 	Vector mousePos;
 };
 

@@ -1,15 +1,14 @@
 #include "Ground.h"
 
-Ground::Ground(bool state) {
+Ground::Ground(bool state, float velMultiplier) {
 	groundTexture = IMG_LoadTexture(Globals::renderer, "Assets/ground.png");
-	SDL_QueryTexture(groundTexture, NULL, NULL, &w, &h);
+	SDL_QueryTexture(groundTexture, NULL, NULL, &groundRect.w, &groundRect.h);
 
 	vel.x = -500;
+	this->velMultiplier = velMultiplier;
 
 	pos.x = 0;
 	pos.y = 670;
-	groundRect.w = w;
-	groundRect.h = h;
 
 	inGame = state;
 }
@@ -20,8 +19,10 @@ Ground::~Ground() {
 
 // update stuffs
 void Ground::update(float dt) {
-	if (inGame)
+	if (inGame) {
+		vel.x -= velMultiplier * dt;
 		updateMovement(dt);
+	}
 
 	checkBoundry();
 	//checkPosition();
@@ -37,7 +38,7 @@ void Ground::draw(bool) {
 
 // Reset ground position to create a loop
 void Ground::checkBoundry() {
-	if (pos.x <= (-w / 1.5))
+	if (pos.x <= (-groundRect.w / 1.5))
 		pos.x = 0;
 }
 

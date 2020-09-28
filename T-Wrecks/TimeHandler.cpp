@@ -2,7 +2,6 @@
 
 TimeHandler::TimeHandler() {
 	lastUpdate = SDL_GetTicks();
-	cout << "  New Start time is " << lastUpdate << endl;
 }
 
 TimeHandler::~TimeHandler() {}

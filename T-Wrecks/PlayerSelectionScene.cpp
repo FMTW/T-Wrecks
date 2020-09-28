@@ -54,19 +54,31 @@ PlayerSelectionScene::PlayerSelectionScene() {
 	SDL_QueryTexture(backButtonTexture, NULL, NULL, &backButtonRect.w, &backButtonRect.h);
 
 	// Render character for player to choose Player(AnimationNumber, position.x, position.y)
-	character0 = new Player(500, 200, false);
+	/*character0 = new Player(500, 200, false);
 	character1 = new Player(850, 200, false);
 	character2 = new Player(1200, 200, false);
 
 	playerObjects.push_back(character0);
 	playerObjects.push_back(character1);
-	playerObjects.push_back(character2);
+	playerObjects.push_back(character2);*/
+
+
+	// Fking around here -----------------------------------------------------------------------------------
+	player = new Player(-199, 560, false);
+	Ground *ground = new Ground(false, 1);
+	lvlObjects.push_back(player);
+	lvlObjects.push_back(ground);
+	
+	// -----------------------------------------------------------------------------------------------------
 
 	// Prep time stuff
 	lastUpdate = SDL_GetTicks(); // Milliseconds since the start of the game running
 
 	// Input Handlers
 	mouseHandler = new MouseHandler();
+	keyboardHandler = new KeyboardHandler(false);
+	keyboardHandler->p = player;
+
 }
 
 
@@ -95,7 +107,7 @@ void PlayerSelectionScene::update() {
 			if (event.button.x >= startButton->pos.x && event.button.x <= startButton->pos.x + 400
 				&&
 				event.button.y >= startButton->pos.y && event.button.y <= startButton->pos.y + 70) {
-				Globals::gsm.pushScene(new LevelTemplate());
+				Globals::gsm.pushScene(new LevelSelectionScene());
 				return;
 			}
 		}
@@ -109,25 +121,41 @@ void PlayerSelectionScene::update() {
 				return;
 			}
 		}
+
+		if (player->pos.x > 1380) {
+			player->pos.x = 1280;
+			Globals::gsm.pushScene(new LevelSelectionScene());
+		}
+		if (player->pos.x < -200) {
+			Globals::gsm.popScene();
+			return;
+		}
+
+
+		keyboardHandler->update(&event);
 	}
 
 	// Monitor Mouse Coordinate
 	mousePos = mouseHandler->getMouseState();
+
+	for (GameObject *lo : lvlObjects)
+		lo->update(dt);
+
+	for (GameObject *po : playerObjects)
+		po->update(dt);
 }
 
 void PlayerSelectionScene::render() {
 	// Render Background
 	SDL_SetRenderDrawColor(Globals::renderer, 244, 244, 244, 100);
-	SDL_RenderFillRect(Globals::renderer, &backgroundRect);
+	SDL_RenderClear(Globals::renderer);
 
 	// Draw each menu objects
-	for (GameObject *ro : renderObjects) {
+	for (GameObject *ro : renderObjects)
 		ro->draw(ro->checkIfHover(mousePos));
-	}
 
-	for (GameObject *po : playerObjects) {
-		po->update(dt);
-	}
+	for (GameObject *lo : lvlObjects)
+		lo->draw(false);
 
 	// Render textTexture
 	SDL_RenderCopy(Globals::renderer, titleTexture, NULL, &titleRect);

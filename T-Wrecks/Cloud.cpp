@@ -1,7 +1,8 @@
 #include "Cloud.h"
 
-Cloud::Cloud() {
+Cloud::Cloud(float velMultiplier) {
 	vel.x = -(rand() % 100 + 100);
+	this->velMultiplier = velMultiplier;
 	loadTexture();
 }
 
@@ -11,9 +12,9 @@ Cloud::~Cloud() {
 }
 
 void Cloud::update(float dt) {
+	vel.x -= velMultiplier * dt;
 	updateMovement(dt);
 	checkBoundry();
-	//checkPosition();
 
 	cloudRect.x = pos.x;
 	cloudRect.y = pos.y;

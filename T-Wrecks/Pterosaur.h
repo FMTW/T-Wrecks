@@ -6,7 +6,7 @@ class Pterosaur :
 	public GameObject
 {
 public:
-	Pterosaur();
+	Pterosaur(float, bool);
 	~Pterosaur();
 
 	virtual void update(float);
@@ -17,6 +17,7 @@ public:
 	void checkPosition();
 
 private:
+	bool isHard;
 	Animation *animation;
 	SDL_Texture *pterosaurTexture;
 
