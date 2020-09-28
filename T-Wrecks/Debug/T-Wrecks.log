@@ -1,3 +1,56 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Shadow Tunnel.vcxproj, T-Rects.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Shadow Tunnel.vcxproj, T-Rects.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Animation.cpp
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Animation.h(28,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Button.cpp
+  Cactus.cpp
+  Cloud.cpp
+  CollisionHandler.cpp
+  EndScene.cpp
+  GameObject.cpp
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\GameObject.cpp(12,23): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\GameObject.cpp(13,23): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+  GameScene.cpp
+  GameSceneManager.cpp
+  Globals.cpp
+  Ground.cpp
+  InputHandler.cpp
+  IntroScene.cpp
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Animation.h(28,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  KeyboardHandler.cpp
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Animation.h(28,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  LeaderboardScene.cpp
+  LevelSelection.cpp
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Animation.h(28,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  LevelTemplate.cpp
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Animation.h(28,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\LevelTemplate.cpp(128,21): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
   PauseScene.cpp
-  T-Wrecks.vcxproj -> C:\Users\User\Documents\GitHub\T-Wrecks\Debug\T-Wrecks.exe
+  Player.cpp
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Animation.h(28,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Player.cpp(6,89): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Player.cpp(10,87): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Player.cpp(31,28): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Player.cpp(39,28): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Player.cpp(53,17): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Player.cpp(55,24): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+  PlayerSelectionScene.cpp
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Animation.h(28,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\PlayerSelectionScene.cpp(81,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\CollisionHandler.cpp(17): warning C4715: 'CollisionHandler::checkCollision': not all control paths return a value
+  Compiling...
+  Pterosaur.cpp
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Animation.h(28,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Pterosaur.cpp(26,99): warning C4305: 'argument': truncation from 'double' to 'float'
+  Source.cpp
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Animation.h(28,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Source.cpp(22,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  MenuScene.cpp
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Animation.h(28,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  MouseHandler.cpp
+  TimeHandler.cpp
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\TimeHandler.cpp(12,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Vector.cpp
+  Generating Code...
+C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\T-Wrecks\Source.cpp(80): warning C4715: 'initialize': not all control paths return a value
+  T-Wrecks.vcxproj -> C:\Users\norri\Documents\GitHub\_Game Development\Custom Engine Projects\T-Wrecks\Debug\T-Wrecks.exe
